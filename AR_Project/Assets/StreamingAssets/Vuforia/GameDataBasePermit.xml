@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
     <Tracking>
+        <ImageTarget name="deer" size="2.000000 2.000000"/>
+        <ImageTarget name="cutedino" size="2.000000 2.134276"/>
+        <ImageTarget name="CuboidTest.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidTest.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidTest.Bottom" size="1.000000 1.000000"/>
         <ImageTarget name="CuboidTest.Top" size="1.000000 1.000000"/>
         <ImageTarget name="CuboidTest.Left" size="1.000000 1.000000"/>
-        <ImageTarget name="CuboidTest.Front" size="1.000000 1.000000"/>
         <ImageTarget name="CuboidTest.Right" size="1.000000 1.000000"/>
-        <ImageTarget name="CuboidTest.Bottom" size="1.000000 1.000000"/>
-        <ImageTarget name="CuboidTest.Back" size="1.000000 1.000000"/>
         <MultiTarget name="CuboidTest">
             <Part name="CuboidTest.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="CuboidTest.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>

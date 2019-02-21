@@ -2,19 +2,19 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="250px-QR_generado" size="1.000000 1.000000"/>
-        <ImageTarget name="smesh.Top" size="0.132291 0.132291"/>
-        <ImageTarget name="smesh.Left" size="0.132291 0.132291"/>
-        <ImageTarget name="smesh.Front" size="0.132291 0.132291"/>
-        <ImageTarget name="smesh.Right" size="0.132291 0.132291"/>
-        <ImageTarget name="smesh.Bottom" size="0.132291 0.132291"/>
-        <ImageTarget name="smesh.Back" size="0.132291 0.132291"/>
+        <ImageTarget name="smesh.Right" size="5.000000 5.000000"/>
+        <ImageTarget name="smesh.Left" size="5.000000 5.000000"/>
+        <ImageTarget name="smesh.Bottom" size="5.000000 5.000000"/>
+        <ImageTarget name="smesh.Back" size="5.000000 5.000000"/>
+        <ImageTarget name="smesh.Top" size="5.000000 5.000000"/>
+        <ImageTarget name="smesh.Front" size="5.000000 5.000000"/>
         <MultiTarget name="smesh">
-            <Part name="smesh.Left" translation="-0.06614550203084946 0 0" rotation="AD: 0 1 0 -90"/>
-            <Part name="smesh.Right" translation="0.06614550203084946 0 0" rotation="AD: 0 1 0 90"/>
-            <Part name="smesh.Front" translation="0 0 0.06614550203084946" rotation="AD: 1 0 0 0"/>
-            <Part name="smesh.Back" translation="0 0 -0.06614550203084946" rotation="AD: 0 1 0 180"/>
-            <Part name="smesh.Top" translation="0 0.06614550203084946 0" rotation="AD: 1 0 0 -90"/>
-            <Part name="smesh.Bottom" translation="0 -0.06614550203084946 0" rotation="AD: 1 0 0 90"/>
+            <Part name="smesh.Left" translation="-2.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="smesh.Right" translation="2.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="smesh.Front" translation="0 0 2.5" rotation="AD: 1 0 0 0"/>
+            <Part name="smesh.Back" translation="0 0 -2.5" rotation="AD: 0 1 0 180"/>
+            <Part name="smesh.Top" translation="0 2.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="smesh.Bottom" translation="0 -2.5 0" rotation="AD: 1 0 0 90"/>
         </MultiTarget>
     </Tracking>
 </QCARConfig>

@@ -2,12 +2,12 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="Mystletainn" size="1.000000 0.622776"/>
-        <ImageTarget name="cu.Right" size="1.000000 0.995556"/>
-        <ImageTarget name="cu.Left" size="1.000000 1.000000"/>
         <ImageTarget name="cu.Bottom" size="1.000000 1.000000"/>
+        <ImageTarget name="cu.Right" size="1.000000 0.995556"/>
         <ImageTarget name="cu.Back" size="1.000000 1.000000"/>
         <ImageTarget name="cu.Top" size="1.000000 1.000000"/>
         <ImageTarget name="cu.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="cu.Left" size="1.000000 1.000000"/>
         <MultiTarget name="cu">
             <Part name="cu.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="cu.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>

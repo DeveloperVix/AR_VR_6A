@@ -8,8 +8,9 @@ public class img_vidio : MonoBehaviour
 {
     DefaultTrackableEventHandler statusImg;
     public VideoPlayer miVidio;
+    public Animator animacionxd;
 
-    bool videoPlaying = false;
+    public bool videoPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,18 +18,22 @@ public class img_vidio : MonoBehaviour
         statusImg = GetComponent<DefaultTrackableEventHandler>();
     }
 
-    void Update()
+    private void Update()
     {
         if(statusImg.isDetected && !videoPlaying)
         {
             Debug.Log("Inicia vidio v:");
             Playbutton();
+            animacionxd.SetBool("iwi", true);
         }
         else if(!statusImg.isDetected)
         {
             Debug.Log("Pausa vidio :v");
             Pausebutton();
+            animacionxd.SetBool("iwi", false);
         }
+
+
     }
 
     public void Playbutton()

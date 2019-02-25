@@ -10,7 +10,9 @@ public class ImgVideo : MonoBehaviour
     DefaultTrackableEventHandler statusImg;
     public VideoPlayer miVideo;
 
-    bool videoPlaying = false;
+    public Animator anim;
+
+    public bool videoPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +25,15 @@ public class ImgVideo : MonoBehaviour
     {
 
 
-
         if (statusImg.isDetected && !videoPlaying) {
             Debug.Log("inicia video");
             PlayButtom();
+            anim.SetBool("Video_Action", true);
         }
         else if (!statusImg.isDetected) {
             Debug.Log("pausa video");
             PauseButtom();
+            anim.SetBool("Video_Action",false);
                 }
     }
 

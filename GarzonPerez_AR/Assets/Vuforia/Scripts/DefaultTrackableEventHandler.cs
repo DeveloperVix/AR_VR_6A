@@ -11,16 +11,23 @@ using Vuforia;
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
-/// 
-/// Changes made to this file could be overwritten when upgrading the Vuforia version. 
+///
+/// Changes made to this file could be overwritten when upgrading the Vuforia version.
 /// When implementing custom event handler behavior, consider inheriting from this class instead.
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+    public bool isDetected = false;
+    public bool detected = false;
+    public Animator anim;
+    public Animator ButtonPlay;
+    public Animator ButtonSalida;
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
-
+    protected TrackableBehaviour.Status m_PreviousStatus;
+    protected TrackableBehaviour.Status m_NewStatus;
     #endregion // PROTECTED_MEMBER_VARIABLES
 
     #region UNITY_MONOBEHAVIOUR_METHODS
@@ -47,21 +54,47 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     ///     tracking state changes.
     /// </summary>
     public void OnTrackableStateChanged(
-        TrackableBehaviour.Status previousStatus,
+
+    TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
+
+        anim.SetBool("Final", false);
+        m_PreviousStatus = previousStatus;
+        m_NewStatus = newStatus;
+
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
+            isDetected = true;
+            if (isDetected == true)
+            {
+                detected = true;
+                if (detected == true)
+                {
+                    anim.SetBool("Inicio", true);
+                    ButtonPlay.SetBool("Inicio1", false);
+                }
+            }
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
+            isDetected = false;
+            if (isDetected == false)
+            {
+                detected = false;
+                if (detected == false)
+                {
+                    anim.SetBool("Inicio", false);
+                    ButtonPlay.SetBool("Inicio1", true);
+                }
+            }
         }
         else
         {
@@ -69,12 +102,21 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Vuforia is starting, but tracking has not been lost or found yet
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
+            isDetected = false;
+            if (isDetected == false)
+            {
+                detected = false;
+                if (detected == false)
+                {
+                    anim.SetBool("Inicio", false);
+                    ButtonPlay.SetBool("Inicio1", true);
+                }
+            }
         }
     }
-
     #endregion // PUBLIC_METHODS
 
-    #region PROTECTED_METHODS
+        #region PROTECTED_METHODS
 
     protected virtual void OnTrackingFound()
     {

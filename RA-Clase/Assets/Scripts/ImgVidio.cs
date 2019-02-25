@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 using Vuforia;
 
 public class ImgVidio : MonoBehaviour
@@ -9,39 +10,53 @@ public class ImgVidio : MonoBehaviour
 
     DefaultTrackableEventHandler statusImg;
     public VideoPlayer miVidio;
+    public GameObject UIuser;
 
     bool videoPlaying = false;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        
         statusImg = GetComponent<DefaultTrackableEventHandler>();
+
+        
+
+        
     }
 
     private void Update()
     {
-        if(statusImg.isDetected && !videoPlaying)
+        Animator anim = UIuser.GetComponent<Animator>();
+        bool IsPlaying = anim.GetBool("IsPlaying");
+        if (statusImg.isDetected && !videoPlaying)
         {
             Debug.Log("Inicia vidio");
-            PlayButton();
+            miVidio.Play();
+            anim.SetBool("IsPlaying", IsPlaying = true);
         }
         else if(!statusImg.isDetected)
         {
             Debug.Log("Pausa vidio");
-            PauseButton();
+            miVidio.Stop();
+            anim.SetBool("IsPlaying", IsPlaying = false);
         }
     }
 
     public void PlayButton()
     {
+        Debug.Log("Boton presionado Play");
         miVidio.Play();
         videoPlaying = true;
     }
 
     public void PauseButton()
     {
+        Debug.Log("Boton presionado Pausa");
         miVidio.Pause();
-        videoPlaying = false;
     }
 
 

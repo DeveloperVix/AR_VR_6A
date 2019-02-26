@@ -32,8 +32,6 @@ public class img_vidio : MonoBehaviour
             Pausebutton();
             animacionxd.SetBool("iwi", false);
         }
-
-
     }
 
     public void Playbutton()

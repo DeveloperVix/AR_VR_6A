@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
-  <Tracking>
-    <ImageTarget name="Itachi" size="1.000000 0.974659" />
-  </Tracking>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="Itachi" size="1.000000 0.974659"/>
+        <ImageTarget name="Plano_Chido" size="1.000000 1.000000"/>
+        <ImageTarget name="Sonriente" size="1.000000 1.000000"/>
+        <ImageTarget name="assadas" size="2.000000 2.000000"/>
+        <ImageTarget name="Chido.Right" size="1.000000 1.000000"/>
+        <ImageTarget name="Chido.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="Chido.Left" size="1.000000 1.000000"/>
+        <ImageTarget name="Chido.Bottom" size="1.000000 1.000000"/>
+        <ImageTarget name="Chido.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="Chido.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="Maincra_Tierra.Right" size="1.000000 1.004149"/>
+        <ImageTarget name="Maincra_Tierra.Back" size="1.000000 1.004149"/>
+        <ImageTarget name="Maincra_Tierra.Left" size="1.000000 1.000000"/>
+        <ImageTarget name="Maincra_Tierra.Bottom" size="1.000000 1.004149"/>
+        <ImageTarget name="Maincra_Tierra.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="Maincra_Tierra.Top" size="1.000000 0.995902"/>
+        <MultiTarget name="Chido">
+            <Part name="Chido.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="Chido.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="Chido.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="Chido.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="Chido.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="Chido.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="Maincra_Tierra">
+            <Part name="Maincra_Tierra.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="Maincra_Tierra.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="Maincra_Tierra.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="Maincra_Tierra.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="Maincra_Tierra.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="Maincra_Tierra.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
 </QCARConfig>

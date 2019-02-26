@@ -9,8 +9,10 @@ public class VideoScript : MonoBehaviour
     DefaultTrackableEventHandler Statusimg;
     public VideoPlayer VideoPlayer;
     bool OnPlays = false;
+    public Animator anim;
+    public Animator animButton;
 
-        void Start()
+    void Start()
     {
         Statusimg = GetComponent<DefaultTrackableEventHandler>();
     }
@@ -19,10 +21,14 @@ public class VideoScript : MonoBehaviour
     {
         if(Statusimg.isDetected && !OnPlays){
             playButton();
+            anim.SetBool("Inicio", true);
+            animButton.SetBool("InicioButton", true);
         }
         else if (!Statusimg.isDetected)
-        {
+        { 
             pauseButton();
+            anim.SetBool("Inicio", false);
+            animButton.SetBool("InicioButton", false);
         }
     }
     public void playButton()

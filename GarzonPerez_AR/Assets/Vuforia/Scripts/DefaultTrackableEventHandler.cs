@@ -18,11 +18,7 @@ using Vuforia;
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
     public bool isDetected = false;
-    public bool detected = false;
-    public Animator anim;
-    public Animator ButtonPlay;
-    public Animator ButtonSalida;
-
+    
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -59,7 +55,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         TrackableBehaviour.Status newStatus)
     {
 
-        anim.SetBool("Final", false);
         m_PreviousStatus = previousStatus;
         m_NewStatus = newStatus;
 
@@ -70,15 +65,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
             isDetected = true;
-            if (isDetected == true)
-            {
-                detected = true;
-                if (detected == true)
-                {
-                    anim.SetBool("Inicio", true);
-                    ButtonPlay.SetBool("Inicio1", false);
-                }
-            }
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
@@ -86,15 +72,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
             isDetected = false;
-            if (isDetected == false)
-            {
-                detected = false;
-                if (detected == false)
-                {
-                    anim.SetBool("Inicio", false);
-                    ButtonPlay.SetBool("Inicio1", true);
-                }
-            }
         }
         else
         {
@@ -103,15 +80,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
             isDetected = false;
-            if (isDetected == false)
-            {
-                detected = false;
-                if (detected == false)
-                {
-                    anim.SetBool("Inicio", false);
-                    ButtonPlay.SetBool("Inicio1", true);
-                }
-            }
         }
     }
     #endregion // PUBLIC_METHODS

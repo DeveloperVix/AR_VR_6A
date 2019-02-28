@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 8665caf3558744145b3caa14f8871746
+  - enabled: 1
+    path: Assets/Scenes/ARGame.unity
+    guid: b30e5a47ac75291408a65e26472fb9c3
   m_configObjects: {}

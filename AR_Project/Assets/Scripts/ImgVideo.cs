@@ -14,10 +14,13 @@ public class ImgVideo : MonoBehaviour
 
     public bool videoPlaying = false;
 
+    public GameObject RefBut;
+
     // Start is called before the first frame update
     void Start()
     {
         statusImg = GetComponent<DefaultTrackableEventHandler>();
+        RefBut.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,13 +32,17 @@ public class ImgVideo : MonoBehaviour
             Debug.Log("inicia video");
             PlayButtom();
             anim.SetBool("Video_Action", true);
+            RefBut.SetActive(true);
         }
         else if (!statusImg.isDetected) {
             Debug.Log("pausa video");
             PauseButtom();
             anim.SetBool("Video_Action",false);
+            RefBut.SetActive(false);
                 }
     }
+
+ 
 
     public void PlayButtom()
     {

@@ -26,7 +26,7 @@ public class Seleccion : MonoBehaviour
         else
         {
             Debug.Log("Cambiando Material de selección");
-            meshRenderer.material = selectedMaterial;//se metio el material a defaultMaterial
+            meshRenderer.material = selectedMaterial;//se metio el material de selección
         }
     }
 }

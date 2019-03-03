@@ -20,13 +20,13 @@ public class IMG_Video : MonoBehaviour
     {
         if (statusIMG.isDetected && !videoIsPlay)
         {
-            Debug.Log("Inicia Video :v");
+            //Debug.Log("Inicia Video :v");
             PlayButton();
             
         }
         else if (!statusIMG.isDetected)
         {
-            Debug.Log("Pausa Video :y");
+            //Debug.Log("Pausa Video :y");
             PauseButton();
             animaciones.SetBool("activo", false);
         }

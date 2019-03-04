@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 5f1c80ef5a0d402896fb5d6abef8271c
+guid: 8c0bb7b8292f4c4e88e229e34cb745f0
 TextureImporter:
-  fileIDToRecycleName:
-    8900000: generatedCubemap
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -53,7 +52,7 @@ TextureImporter:
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
-  textureShape: 2
+  textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0

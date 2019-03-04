@@ -49,4 +49,13 @@ public class GameController : MonoBehaviour
     {
         video.Pause();
     }
+
+    private void OnEnable()
+    {
+        GameObject.Find("GameControllerUI").GetComponent<GameControllerUI>().create();
+    }
+    public void salir(int scene)
+    {
+        GameObject.Find("GameControllerUI").GetComponent<GameControllerUI>().LoadNewScene(scene);
+    }
 }

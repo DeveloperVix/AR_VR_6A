@@ -2,19 +2,19 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="CODIGO_QR" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Top" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Left" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Right" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Bottom" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Front" size="1.000000 1.000000"/>
-        <ImageTarget name="Cubo.Back" size="1.000000 1.000000"/>
-        <MultiTarget name="Cubo">
-            <Part name="Cubo.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
-            <Part name="Cubo.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
-            <Part name="Cubo.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
-            <Part name="Cubo.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
-            <Part name="Cubo.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
-            <Part name="Cubo.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        <ImageTarget name="cubo.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Right" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Left" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Bottom" size="1.000000 1.000000"/>
+        <MultiTarget name="cubo">
+            <Part name="cubo.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="cubo.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="cubo.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="cubo.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="cubo.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="cubo.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
         </MultiTarget>
     </Tracking>
 </QCARConfig>

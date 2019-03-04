@@ -11,7 +11,7 @@ public class GameControllerUI : MonoBehaviour
 
     private static GameControllerUI instance;
 
-    public GameObject objLoanding;
+    public GameObject objLoading;
 
     public static GameControllerUI Instance { get { return instance; } }
 
@@ -33,8 +33,15 @@ public class GameControllerUI : MonoBehaviour
             Debug.Log("Hay más de un instancia!!");
         }
 
-        objLoanding = GameObject.Find("Canvas/BackgroundLoading");
-        objLoanding.SetActive(false);
+        objLoading = GameObject.Find("Canvas/BackgroundLoading");
+        objLoading.SetActive(false);
+    }
+
+
+    public void create()
+    {
+        objLoading = GameObject.Find("Canvas/BackgroundLoading");
+        objLoading.SetActive(false);
     }
 
 
@@ -47,7 +54,7 @@ public class GameControllerUI : MonoBehaviour
 
     public void LoadNewScene(int indexScene)
     {
-        objLoanding.SetActive(true);
+        objLoading.SetActive(true);
         StartCoroutine(LoadScene(indexScene));
     }
 

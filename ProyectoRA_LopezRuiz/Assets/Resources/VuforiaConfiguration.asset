@@ -4,8 +4,7 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -14,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AYAFHVj/////AAABmafu0xUi5k5wnqypzeg8zp57U6EuvAenTyVFGjsvB0jCNU4pOt3n1XXk0nc3Cat8CyKMRi5UMr8YQGQMO2dM5wvpsYkLzWmOEfx0whRFHYhdjsoFRAesm/e7WqJRcxfhmsrgCyuuNkgPZhgcY2M0l9UKwSceA84QYocbDECBnGHDjpJA4KADsNawHGQHvI320HHa2hKMhrt1mtO7NqQNeQXdP/EKSnpogZG9DUuLvlZdu7T45JILWPTYG20HNQRcM2v8w18BAx3e0gjQurnadfHyPrhnsUwkcEpy1cdBDOpAOmVjJ5a/xx5DuDCpOxtlU7W13KKKr0LuX8j/hajRPHe7RyYsgtV6bU8QDxudLKSM
-    ufoLicenseKey: QWRQTUFMdi8vLy8vQUFBQUtNbUdFSVVwMTA2UHFDS2cyZUMwQ2d4bmhzZk9MMllzcm1tU3ZzYi9UT1paMEI4cHNrOGpBb0xpdUhZeXdGWE0yQlZYcFh5dXBTa1hSZW9yMTZMTUhJTnpGV2paRFIvcEhWditHUDllaXo2REF1YzErNTR1enRLNXFHd0dxR3BMOTQvemJuQm5hZS9HY2t4bi9DekpwOVg2RThWeWZPbVBKdndjUG9jbmlVVEI3N3pOc3dERStmNlNrUnFBVCtWTmExdzRGQXordTkrODhONlROV1dSeDBWT0FFYnpnT2VBQXJncndEdjZwMjVEWmROaEtiMWo2ZHFPTU1xU3VFU0tlbTVpY0VwK0pQNHE1Nkw1WFJNSlAwODZrem5oK0RXZEl6M1ZHbk92N09VT3FHMnZMelN4TERTZHdxcjRUQzJGTGRlRnJsVjVyRHB3dUc0UHJPMnFjNE12OThjVnkzVkVhQXZ0SjlzMkd6UWM=
+    ufoLicenseKey: QVhiM0Y1Ly8vLy8vQUFBQUtPbnFIeHJFSGs1N3VrMlg4U050eVBzK2pkOFZxMDhrazlwYjBsYS9aZUIxQlV1ckZWcWt0ZllSQWpnT2tIRlY2VzdOMDRTRjNYRUhmbTF5L1BnYlB4eWdHWEF6RUNheXowc3dyNVNYa2ozdERuRjhka1FpOHRscHdkMDcrcEJEY1FjTjNJcUM1bEgwOTYzQkdZdjRsQStRb0hSQU9nRGthelp5TlY0WHVwWU9EaE05NWw5bXAzbnBDMjM5MWZBWXBFdEdiL2loTDNab3N4b25ZblhjK1JtSS9wLzRoTDIwVGhmTXR6WFJNYkpUTXZLZzJoQ0N0TEJXNEptZ0pSOUtSdStzQWM3QjVNOWFFMGVHQ1dUT1VRSUUweEpiZC9ZL2cvS29iNDhBRXdQOGFwbWR5NmRWU0FHU2psVzRZY2FEU2Zud3J1ZHhucVNmSUZiajNTUnIzM0lKVlFIaW1rL0oyOGNFeDdyekcySXg=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
     maxSimultaneousImageTargets: 1
@@ -22,8 +21,8 @@ MonoBehaviour:
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
-    version: 8.0.10
-    eulaAcceptedVersions: '{"Values":["0.0","8.0"]}'
+    version: 7.5.20
+    eulaAccepted: 0
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
@@ -60,6 +59,7 @@ MonoBehaviour:
     modelCorrectionMode: 0
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
+    fusionMode: 7
   smartTerrain:
     autoInitTracker: 0
     autoStartTracker: 0

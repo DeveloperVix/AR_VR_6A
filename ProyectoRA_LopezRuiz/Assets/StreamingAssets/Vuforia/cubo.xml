@@ -2,12 +2,12 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="FOTO-TARGET" size="1.000000 1.000000"/>
-        <ImageTarget name="cubo_taget.Back" size="1.000000 1.000000"/>
-        <ImageTarget name="cubo_taget.Bottom" size="1.000000 1.004000"/>
-        <ImageTarget name="cubo_taget.Right" size="1.000000 1.000000"/>
         <ImageTarget name="cubo_taget.Front" size="1.000000 1.000000"/>
-        <ImageTarget name="cubo_taget.Top" size="1.000000 1.000000"/>
         <ImageTarget name="cubo_taget.Left" size="1.000000 1.003125"/>
+        <ImageTarget name="cubo_taget.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo_taget.Bottom" size="1.000000 1.004000"/>
+        <ImageTarget name="cubo_taget.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo_taget.Right" size="1.000000 1.000000"/>
         <MultiTarget name="cubo_taget">
             <Part name="cubo_taget.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="cubo_taget.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>

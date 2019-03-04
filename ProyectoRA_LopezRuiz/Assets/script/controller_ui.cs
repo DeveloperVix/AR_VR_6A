@@ -13,6 +13,9 @@ public class controller_ui : MonoBehaviour
 
     void Start()
     {
+        //objLoading = GameObject.Find("Canvas/back");
+        
+
         objLoading.SetActive(false);
         if (instace == null)
         {
@@ -24,13 +27,13 @@ public class controller_ui : MonoBehaviour
             Debug.LogError("hay mas de una instancial!!");
         }
 
-        objLoading = GameObject.Find("Canvas/back");
-        objLoading.SetActive(false);
+
     }
 
-|   private void OnEnable()
+   private void OnEnable()
     {
         objLoading = GameObject.Find("Canvas/back");
+        objLoading.SetActive(false);
     }
 
     #region buttons UI

@@ -20,9 +20,30 @@ public class GameControllerUI : MonoBehaviour
         else
         {
             Debug.LogError("Hay mas de una instancia >:v");
+            Destroy(gameObject);//destruye esto
         }
 
-        objLoading = GameObject.Find("Canvas/BackgroundLoading");//ACCEDEMOS A UN HIJO
+        /*objLoading = GameObject.Find("Canvas/BackgroundLoading");//ACCEDEMOS A UN HIJO
+        objLoading.SetActive(false);*/
+    }
+
+    private void OnEnable()//Se madna llamar cuando inicia el comportamiento del objeto 
+    {
+        Debug.LogError("OnEnable llamdo!");
+        SceneManager.sceneLoaded += OnSceneLoaded;//Le estamos añadiendo el metodo propio que creamos con el +=
+    }
+
+    private void OnDisable()//Cunado ya no esta activado el objeto
+    {
+        Debug.LogError("OnDisable llamado!");
+        SceneManager.sceneLoaded -= OnSceneLoaded;//Le quitamos el metodo propio con -=
+    }
+
+    //Metodo popio
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)//Es para saber cuando esta cargada la escena
+    {  
+        Debug.Log("Escena cargada");
+        objLoading = GameObject.Find("Canvas/BackgroundLoading");
         objLoading.SetActive(false);
     }
 
@@ -39,7 +60,7 @@ public class GameControllerUI : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);//AsyncOperation es el proceso de pantalla de carga
 
-        while(async != null)
+        while(!async.isDone)//Mientras la operacion asincronica no este terminada va a retornar nulo
         {   
             yield return null;
             //yield return new WaitForSeconds(5f);
@@ -52,9 +73,4 @@ public class GameControllerUI : MonoBehaviour
     }
 
     #endregion
-
-    /*void Update()
-    {
-        
-    }*/
 }

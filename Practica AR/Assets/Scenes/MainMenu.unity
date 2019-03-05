@@ -191,8 +191,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1474381093}
-        m_MethodName: LoadNewScene
+      - m_Target: {fileID: 685645721}
+        m_MethodName: ButtonPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 685645720}
   - component: {fileID: 685645719}
   - component: {fileID: 685645718}
+  - component: {fileID: 685645721}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1181,6 +1182,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &685645721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685645717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa33e48535220948829c9cb24dd85da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &997151593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,8 +1734,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1474381093}
-        m_MethodName: Exit
+      - m_Target: {fileID: 685645721}
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

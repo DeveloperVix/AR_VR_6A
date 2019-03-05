@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.Video;//libreria para modificar videoplayer
 using Vuforia;
 
-public class ImgVidio : MonoBehaviour
+public class ImgVidio : MonoBehaviour, ITrackableEventHandler
 {
+
+    protected TrackableBehaviour mTrackableBehaviour;
     public Animator anim;
     public DefaultTrackableEventHandler statusImg;
     public VideoPlayer miVidio;
@@ -14,8 +16,9 @@ public class ImgVidio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animation>();
-        //statusImg = GetComponent<DefaultTrackableEventHandler>();
+        mTrackableBehaviour = GetComponent<TrackableBehaviour>();
+        if (mTrackableBehaviour)
+            mTrackableBehaviour.RegisterTrackableEventHandler(this);
     }
 
 
@@ -34,11 +37,41 @@ public class ImgVidio : MonoBehaviour
         }
     }
 
+    public void OnTrackableStateChanged(
+        TrackableBehaviour.Status previousStatus,
+        TrackableBehaviour.Status newStatus)
+    {
+
+        if (newStatus == TrackableBehaviour.Status.DETECTED ||
+            newStatus == TrackableBehaviour.Status.TRACKED ||
+            newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+        {
+            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+
+            Debug.Log("inicia video");
+            Playbutton();
+        }
+        else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
+                 newStatus == TrackableBehaviour.Status.NO_POSE)
+        {
+            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+            Debug.Log("Pauso video");
+            PauseButton();
+            anim.SetBool("Transicion", false);
+        }
+        else
+        {
+            // For combo of previousStatus=UNKNOWN + newStatus=UNKNOWN|NOT_FOUND
+            // Vuforia is starting, but tracking has not been lost or found yet
+            // Call OnTrackingLost() to hide the augmentations
+        }
+    }
+
     public void Playbutton()
     {
         miVidio.Play();
         anim.SetBool("Transicion", true);
-        Debug.Log("Playaaaaaaa");
+        Debug.Log("Playyyyyyy");
         videoPlaying = true;
     }
 

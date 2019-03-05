@@ -550,8 +550,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 590952823}
-        m_MethodName: BtnExit
+      - m_Target: {fileID: 1042750415}
+        m_MethodName: ExitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1803,8 +1803,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 590952823}
-        m_MethodName: LoadNewScene
+      - m_Target: {fileID: 1042750415}
+        m_MethodName: PlayButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.48300108, b: 0.48300108, a: 0.53333336}
+  m_Color: {r: 0.8679245, g: 0.07778566, b: 0.07778566, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1939,6 +1939,7 @@ GameObject:
   - component: {fileID: 1042750414}
   - component: {fileID: 1042750413}
   - component: {fileID: 1042750412}
+  - component: {fileID: 1042750415}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2010,6 +2011,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042750415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042750411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67751cd661ac0b149a01e43089266e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1206128563
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,8 +23,25 @@ public class GameControllerUI : MonoBehaviour
         else
         {
             Debug.LogError("Hay mas de una instancia!!!!!!!!!!!!!!!!!!!!!!! xdxd");
+            Destroy(gameObject);
         }
+    }
 
+    private void OnEnable()
+    {
+        Debug.LogError("OnEnable llamado!");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        Debug.LogError("OnDisable llamado!");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    //metodo propio
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Escena cargada");
         objLoading = GameObject.Find("Canvas/BackGroundLoading");
         objLoading.SetActive(false);
     }
@@ -40,7 +57,7 @@ public class GameControllerUI : MonoBehaviour
     IEnumerator LoadScene(int index)
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
-        while(async != null)
+        while(!async.isDone)
         {
             yield return null;
         }

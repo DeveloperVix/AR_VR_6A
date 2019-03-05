@@ -29,6 +29,7 @@ public class CapsuleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(statusImg.isDetected)
         {
             if (Input.GetMouseButtonDown(0))
@@ -42,7 +43,7 @@ public class CapsuleMovement : MonoBehaviour
                 }
             }
         }
-        
+        */
         
     }
 }

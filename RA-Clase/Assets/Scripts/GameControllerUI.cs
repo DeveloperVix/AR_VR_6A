@@ -7,7 +7,7 @@ public class GameControllerUI : MonoBehaviour
 {
     private static GameControllerUI instance;
 
-    public static GameControllerUI Instance { get { return Instance; }  }
+    public static GameControllerUI Instance { get { return instance; }  }
 
     public GameObject objLoading;
 
@@ -15,7 +15,7 @@ public class GameControllerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);
@@ -24,19 +24,28 @@ public class GameControllerUI : MonoBehaviour
         else
         {
             Debug.LogError("Hay mas de una isntancia!!");
+            Destroy(gameObject);
         }
-
-
-        objLoading = GameObject.Find("Canvas/BackgroundLoading");
-        objLoading.SetActive(false);
     }
 
-
-    private void OnEnable()
+    void OnEnable()
     {
-        objLoading = GameObject.Find("Canvas/BackgroundLoading");
         
-        Debug.Log("Estoy activo");
+        Debug.Log("OnEnable llamado!");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        Debug.LogError("OnDisable llamado!");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Escena cargada");
+        objLoading = GameObject.Find("Canvas/BackgroundLoading");
+        objLoading.SetActive(false);
     }
 
     #region Buttons UI
@@ -51,7 +60,7 @@ public class GameControllerUI : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
 
-        while(async != null)
+        while(!async.isDone)
         {
             yield return null;
         }

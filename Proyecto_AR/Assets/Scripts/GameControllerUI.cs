@@ -8,7 +8,7 @@ public class GameControllerUI : MonoBehaviour
 {
     public GameObject objLoading;
 
-    private static GameControllerUI instance;
+    private static GameControllerUI instance;    //Herramientas de Single Toon (?) que te permite instanciar este script en otros scripts
 
     public static GameControllerUI Instance { get { return instance; } }
 
@@ -24,14 +24,33 @@ public class GameControllerUI : MonoBehaviour
         else
         {
             Debug.LogError("Hay mas de una instancia!");
+            Destroy(gameObject);
         }
 
+        
+    }
+
+    void OnEnable()
+    {
+        Debug.LogError("OnEnable llamado!");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        Debug.LogError("OnDisable llamado!");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    //Metodo propio
+    void OnSceneLoaded( Scene scene, LoadSceneMode mode)
+    {
+        Debug.LogError("Escena cargada");
         objLoading = GameObject.Find("Canvas/BackgroundLoading");
 
         objLoading.SetActive(false);
     }
-
-
 
     #region Buttons UI
 
@@ -44,9 +63,9 @@ public class GameControllerUI : MonoBehaviour
 
     IEnumerator LoadScene(int index)
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync(index);
+        AsyncOperation async = SceneManager.LoadSceneAsync(index);    //Aquí se crea una operacion asincronica que cargará la siguiente escena 
 
-        while (async != null)
+        while (!async.isDone)     //Mientras la AsyncOperation no este terminada regresa nulo
         {
             yield return null;
         }

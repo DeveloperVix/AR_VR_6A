@@ -23,7 +23,7 @@ public class imgVideo : MonoBehaviour
     {
         if (statusImg.isDetected && !videoPlaying)
         {
-            Debug.Log("Inicia Cuenta regresiva");
+            //Debug.Log("Inicia Cuenta regresiva");
             //miVideo.Play();
             playButton.onClick.AddListener(PlayButton);
             pauseButton.onClick.AddListener(PauseButton);
@@ -31,7 +31,7 @@ public class imgVideo : MonoBehaviour
         }
         else if (!statusImg.isDetected)
         {
-            Debug.Log("Detener cuenta regresiva");
+           // Debug.Log("Detener cuenta regresiva");
             //miVideo.Pause();
         }
 

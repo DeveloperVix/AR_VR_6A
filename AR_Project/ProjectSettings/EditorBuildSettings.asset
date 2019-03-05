@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzle_AR.unity
     guid: 59cf878e5e48b4c46aa78a8a0b1439ca
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Scene_AR.unity
     guid: 05f7048e17569cb449c273442ac4d485
   m_configObjects: {}

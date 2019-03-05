@@ -1934,6 +1934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1351059565}
   - component: {fileID: 1351059564}
+  - component: {fileID: 1351059566}
   - component: {fileID: 1351059563}
   m_Layer: 0
   m_Name: Main Camera
@@ -2006,6 +2007,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1351059566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351059562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712d4a2fa4e469440824d088bcca6693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1416278651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,8 +2522,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 161619193}
-        m_MethodName: LoadNewScene
+      - m_Target: {fileID: 1351059566}
+        m_MethodName: PlayButtum
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2638,8 +2651,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 161619193}
-        m_MethodName: ExitButt
+      - m_Target: {fileID: 1351059566}
+        m_MethodName: ExitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3099,7 +3112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -230}
+  m_AnchoredPosition: {x: -18, y: -192}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019480699

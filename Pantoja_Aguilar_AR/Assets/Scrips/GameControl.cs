@@ -19,15 +19,28 @@ public class GameControl : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
-        objLoading = GameObject.Find("Canvas/BachgrunLoading");
-        objLoading.SetActive(false);
+        else{
+	 Destroy(gameObject);
+	}
     }
-    
-    private void OnEnable() {
+	
+   /* private void OnEnable() {
 
         objLoading=GameObject.Find("Canvas/BachgrunLoading");
+    }*/
+	 void OnEnable() {
+
+        SceneManager.sceneLoaded+=OnSceneLoaded;
+    }
+     void OnDisable() {
+	SceneManager.sceneLoaded-=OnSceneLoaded;        
     }
 
+	void OnSceneLoaded(Scene scen, LoadSceneMode mode) {
+	objLoading = GameObject.Find("Canvas/BachgrunLoading");
+        objLoading.SetActive(false);
+	
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,7 +55,7 @@ public class GameControl : MonoBehaviour
     IEnumerator LoadScene(int index) {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
 
-        while (async != null) {
+        while (!async.isDone) {
             yield return null;
         }
     }

@@ -24,17 +24,34 @@ public class GameControllerUI : MonoBehaviour
         }
         else {
             Debug.LogError("Hay mas de una instancia");
+            Destroy(gameObject);
         }
 
-        objLoading = GameObject.Find("Canvas/backgroundLoading");
-
-        objLoading.SetActive(false);
+        
     }
 
     private void OnEnable()
     {
-        objLoading = GameObject.Find("Canvas/backgroundLoading");
-        Debug.Log("Estoy activo");
+        Debug.LogError("OnEnable llamado");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        //objLoading = GameObject.Find("Canvas/backgroundLoading");
+        //Debug.Log("Estoy activo");
+    }
+
+    void OnDisable()
+    {
+        Debug.LogError("OnDisable llamado");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+           
+    }
+    //metodo propio
+    void OnSceneLoaded(Scene scene , LoadSceneMode mode)
+    {
+        Debug.LogError("Escena cargada");
+        
+
+        objLoading = GameObject.Find("Canvas/backgroundloading");
+        objLoading.SetActive(false);
     }
 
     #region Buttons UI
@@ -53,7 +70,7 @@ public class GameControllerUI : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
 
-        while (async != null)
+        while (async.isDone)
         {
             yield return null;
         }

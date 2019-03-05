@@ -21,18 +21,28 @@ public class Controller: MonoBehaviour
         else
         {
             Debug.LogError("Hay mas de una instancia");
+            Destroy(gameObject);
         }
-
-
-        objLoading = GameObject.Find("Canvas/LoadingMenu");
-        objLoading.SetActive(false);
     }
 
     private void OnEnable()
     {
-        objLoading = GameObject.Find("Canvas/LoadingScene");
-        Debug.Log("Está Activo");
+        Debug.LogError("OnEnable llamado");
+        SceneManager.sceneLoaded += onSceneLoaded;
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= onSceneLoaded;
+    }
+
+    //propio
+    void onSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        objLoading = GameObject.Find("Canvas/LoadingMenu");
+        objLoading.SetActive(false);
+    }
+
 
     #region Buttons UI
 
@@ -46,12 +56,15 @@ public class Controller: MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
 
-        while (async != null)
+        while (!async.isDone)
         {
             yield return null;
         }
     }
-
+    /*public void Exit()
+    {
+        Application.Quit();
+    }*/
 
     #endregion
 

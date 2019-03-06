@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: b83db2f05bd89d14a98fe13232ae997b
+  - enabled: 1
     path: Assets/Scenes/CuboAR.unity
     guid: 94e6c3855d09d7e47b6133726b54d42d
   m_configObjects: {}

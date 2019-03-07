@@ -6,8 +6,6 @@ using Vuforia;
 
 public class CapsuleMovement : MonoBehaviour
 {
-
-
     DefaultTrackableEventHandler statusImg;
     protected NavMeshAgent agente;
     protected Vector3 target;
@@ -29,21 +27,16 @@ public class CapsuleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(statusImg.isDetected)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            Debug.Log("Clic izquierdo");
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("Clic izquierdo");
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
-                {
-                    target = hit.point;
-                    agente.SetDestination(target);
-                }
+                target = hit.point;
+                agente.SetDestination(target);
             }
         }
-        */
         
     }
 }

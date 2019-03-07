@@ -9,11 +9,20 @@ public class VideoScript : MonoBehaviour
     DefaultTrackableEventHandler Statusimg;
     public VideoPlayer VideoPlayer;
     bool OnPlays = false;
-    public float range = 10f;
+
+
     public Animator anim;
     public Animator animButton;
+    public Animator CilindroAnim;
+
+
     public GameObject cilindro;
     public GameObject win;
+    public GameObject Pelota, pelota2;
+    public GameObject PuzzleRes;
+
+    public float range = 10f;
+    public int VidaCilindro1= 12;
 
     void Start()
     {
@@ -30,9 +39,28 @@ public class VideoScript : MonoBehaviour
             {
                 if(cilindro == true)
                 {
-                    Destroy(cilindro);
-                    win.SetActive(true);
+                    VidaCilindro1 -= 4;
+                    CilindroAnim.speed += 1;
+                    if(VidaCilindro1 <= 0)
+                    {
+                        Destroy(cilindro);
+                        StartCoroutine("Contador");
+                    }
                 }
+                if(Pelota == true)
+                {
+                    Destroy(Pelota);
+                    pelota2.SetActive(true);
+                    if (pelota2 == true && Pelota == null)
+                    {
+                        Destroy(pelota2);
+                        StartCoroutine("Contador");
+                    }
+                }
+                //if (Pelota && pelota2 == null && )
+                //{
+                //    PuzzleRes.SetActive(true);
+                //}
             }
         }
         if (Statusimg.isDetected && OnPlays){
@@ -57,5 +85,12 @@ public class VideoScript : MonoBehaviour
     {
         VideoPlayer.Pause();
         OnPlays = true;
+    }
+    IEnumerator Contador()
+    {
+        win.SetActive(true);
+        pelota2.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        win.SetActive(false);
     }
 }

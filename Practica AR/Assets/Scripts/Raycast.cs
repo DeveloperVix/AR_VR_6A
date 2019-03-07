@@ -27,16 +27,18 @@ public class Raycast : MonoBehaviour
                     Debug.Log("Pausando animacion TOP");
                     seleccion.anim.speed = 0;
                     seleccion.isSelected = true;
-                    seleccion.Selected();
+                    //seleccion.Selected();
                 }
                 else
                 {
                     seleccion.anim.speed = 1;
                     seleccion.isSelected = false;
-                    seleccion.Selected();
+                    //seleccion.Selected();
                 }
             }
         }
 
     }
+
+    
 }

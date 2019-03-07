@@ -19,7 +19,8 @@ public class VideoScript : MonoBehaviour
     public GameObject cilindro;
     public GameObject win;
     public GameObject Pelota, pelota2;
-    public GameObject PuzzleRes;
+    public GameObject ButtonsPuzzle3;
+
 
     public float range = 10f;
     public int VidaCilindro1= 12;
@@ -57,10 +58,7 @@ public class VideoScript : MonoBehaviour
                         StartCoroutine("Contador");
                     }
                 }
-                //if (Pelota && pelota2 == null && )
-                //{
-                //    PuzzleRes.SetActive(true);
-                //}
+
             }
         }
         if (Statusimg.isDetected && OnPlays){

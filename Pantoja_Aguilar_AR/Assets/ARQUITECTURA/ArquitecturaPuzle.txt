@@ -1,0 +1,20 @@
+JuegoPM(){
+	public Figuras[];
+	public bool Estado[6];
+	//crear una gran cantidad de botones que esten interactando para el puzzle
+	// desactivar votones al resolver 
+	MVRotacion{
+	//botones
+	}
+	MVTraslacion{
+	//botones
+	}
+	MVEscalacion{
+	//botones
+	}
+	ConJuego{
+	//el jugador  tendra que haer concedir el color se dos caras 
+	//si lo hace se conjelan los colores de estos 
+	// resolver colores???
+	}
+}

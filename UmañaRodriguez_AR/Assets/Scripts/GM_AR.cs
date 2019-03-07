@@ -12,7 +12,7 @@ public class GM_AR : MonoBehaviour
 
     public void GoMenu(int index)
     {
-        Controller.Instance.LoadScene(index);
+        //Controller.Instance.LoadScene(index);
     }
 }
    

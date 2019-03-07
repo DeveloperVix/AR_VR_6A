@@ -12,9 +12,9 @@ public class GameControlUI : MonoBehaviour
     public GameObject objLoading;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (instance = null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);

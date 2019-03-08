@@ -13,18 +13,56 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     protected TrackableBehaviour.Status m_NewStatus;
     #endregion
 
+    public static GM_ARScene act;
+
+    [Header("General Components")]
+    #region General Components
+    [Header("Main")]
+    public Camera mainCamera;
     public TrackableBehaviour puzzleTrack;
     public GameObject puzzleBayo, puzzleSamus, puzzlePalu, puzzleRosa, puzzleCorrin, puzzlePeach;
+
+
     public enum CurrentPuzzle { Null, Bayo, Samus, Palu, Rosa, Corrin, Peach }
-    CurrentPuzzle currentPuzzle = CurrentPuzzle.Null;
-    
-    public GameObject prefabBayo, prefabSamus, prefabPalu, prefabRosa, prefabCorrin, prefabPeach;
+    public CurrentPuzzle currentPuzzle = CurrentPuzzle.Null;
+
+
+    delegate void CurrentPuzzleFunc();
+    CurrentPuzzleFunc currentPuzzleFunc;
+    [Header("Prefabs")]
+    public GameObject prefabBayo;
+    public GameObject prefabSamus, prefabPalu, prefabRosa, prefabCorrin, prefabPeach;
+    [HideInInspector]
+    public GameObject prefabCurrent;
+    [HideInInspector]
+    public GameObject currentUI;
+
+    #endregion
 
     [Header("Bayo Components")]
     #region PuzzleBayo Vars
+    public GameObject bayoUI;
     public float[] bayoPosX;
-    public float[] bayoPosY;
+    public float[] bayoPosZ;
+    public Vector2 bayoCurrentPos = Vector3.zero;
+    [HideInInspector]
+    public bool bayoMove;
+    [HideInInspector]
+    Vector3 bayoNewPos;
     #endregion
+
+    [Header("Samus Components")]
+    #region PuzzleSamus Vars
+    public GameObject samusUI;
+    Transform samusSphere;
+    public int samusScaleToWin;
+
+    #endregion
+
+    public GameObject corrinUI;
+
+    [Header("Win")]
+    public GameObject objWin;
 
 
     Ray ray;
@@ -33,17 +71,112 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     // Use this for initialization
     void Start ()
     {
+        act = this;
         mTrackableBehaviour = puzzleTrack;
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
-        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         RayClick();
+        if(currentPuzzle != CurrentPuzzle.Null) currentPuzzleFunc();
 	}
+
+    #region Puzzle Bayo Functions
+    void PuzzleBayo()
+    {
+        if (objWin.activeInHierarchy) return;
+        if(bayoMove)
+        {
+            print("moving");
+            prefabCurrent.transform.GetChild(0).transform.localPosition = Vector3.MoveTowards(prefabCurrent.transform.GetChild(0).transform.localPosition, bayoNewPos, 0.02f);
+            if (prefabCurrent.transform.GetChild(0).transform.localPosition == bayoNewPos) bayoMove = false;
+            return;
+        }
+    }
+
+    public void BayoButtonMove(string value)
+    {
+        if (bayoMove) return;
+        print("Move");
+        Transform playerPos = prefabCurrent.transform.GetChild(0).transform;
+        bayoNewPos = playerPos.localPosition;
+        switch (value)
+        {
+            case "right":
+                if(bayoCurrentPos.x != 2)
+                {
+                    bayoCurrentPos.x++;
+                    bayoNewPos.x = bayoPosX[(int)(bayoCurrentPos.x)];
+                }
+                break;
+            case "left":
+                if (bayoCurrentPos.x != 0)
+                {
+                    bayoCurrentPos.x--;
+                    bayoNewPos.x = bayoPosX[(int)(bayoCurrentPos.x)];
+                }
+                break;
+            case "down":
+                if (bayoCurrentPos.y != 2)
+                {
+                    bayoCurrentPos.y++;
+                    bayoNewPos.z = bayoPosZ[(int)(bayoCurrentPos.y)];
+                }
+                break;
+            case "up":
+                if (bayoCurrentPos.y != 0)
+                {
+                    bayoCurrentPos.y--;
+                    bayoNewPos.z = bayoPosZ[(int)(bayoCurrentPos.y)];
+                }
+                break;
+        }
+
+        bayoMove = true;
+    }
+
+    #endregion
+
+    #region Puzzle Samus Functions
+    void PuzzleSamus()
+    {
+        if (objWin.activeInHierarchy) return;
+        if(samusSphere.localScale.x > 1f)
+        {
+            Vector3 newScale = samusSphere.localScale;
+            float reduceSpeed = 0.08f;
+            newScale.x -= reduceSpeed;
+            newScale.y -= reduceSpeed;
+            newScale.z -= reduceSpeed;
+            if(newScale.x < 1)
+            {
+                newScale.x = 1;
+                newScale.y = 1;
+                newScale.z = 1;
+            }
+            samusSphere.localScale = newScale;
+        }
+
+        if(samusSphere.localScale.x >= samusScaleToWin)
+        {
+            objWin.SetActive(true);
+        }
+    }
+
+    public void SamusButton()
+    {
+        if (objWin.activeInHierarchy) return;
+        Vector3 newScale = samusSphere.localScale;
+        float augmentSpeed = 1f;
+        newScale.x += augmentSpeed;
+        newScale.y += augmentSpeed;
+        newScale.z += augmentSpeed;
+        samusSphere.localScale = newScale;
+    }
+    #endregion
 
     public void GoToScene(string scene)
     {
@@ -57,25 +190,38 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 
     void RayClick()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
-
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Bayo")))
+        if (!Input.GetMouseButtonUp(0)) return;
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Bayo")))
         {
+            if (currentPuzzle == CurrentPuzzle.Bayo) return;
             HidePuzzles();
-            Instantiate(prefabBayo, puzzleBayo.transform);
+
+            currentUI = bayoUI;
+            currentUI.SetActive(true);
+            prefabCurrent = Instantiate(prefabBayo, puzzleBayo.transform);
+
+            bayoCurrentPos.x = 1;
+            bayoCurrentPos.y = 0;
+            currentPuzzleFunc = PuzzleBayo;
+            
             currentPuzzle = CurrentPuzzle.Bayo;
             return;
         }
 
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Corrin")))
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Corrin")))
         {
             HidePuzzles();
-            Instantiate(prefabCorrin, puzzleCorrin.transform);
+
+            currentUI = corrinUI;
+            currentUI.SetActive(true);
+            prefabCurrent = Instantiate(prefabCorrin, puzzleCorrin.transform);
+
             currentPuzzle = CurrentPuzzle.Corrin;
+            
             return;
         }
 
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Peach")))
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Peach")))
         {
             HidePuzzles();
             Instantiate(prefabPeach, puzzlePeach.transform);
@@ -83,15 +229,21 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
             return;
         }
 
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Samus")))
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Samus")))
         {
+            if (currentPuzzle == CurrentPuzzle.Samus) return;
             HidePuzzles();
-            Instantiate(prefabSamus, puzzleSamus.transform);
+            print("nani");
+            currentUI = samusUI;
+            currentUI.SetActive(true);
+            prefabCurrent = Instantiate(prefabSamus, puzzleSamus.transform);
+            samusSphere = prefabCurrent.transform.GetChild(0).transform;
+            currentPuzzleFunc = PuzzleSamus;
             currentPuzzle = CurrentPuzzle.Samus;
             return;
         }
 
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Rosa")))
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Rosa")))
         {
             HidePuzzles();
             Instantiate(prefabRosa, puzzleRosa.transform);
@@ -99,7 +251,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
             return;
         }
 
-        if (Physics.Raycast(ray, out rayHit, Mathf.Infinity, LayerMask.GetMask("Palu")))
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Palu")))
         {
             HidePuzzles();
             Instantiate(prefabPalu, puzzlePalu.transform);
@@ -111,31 +263,15 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 
     void HidePuzzles()
     {
-        switch (currentPuzzle)
-        {
-            case CurrentPuzzle.Bayo:
-                Destroy(puzzleBayo.transform.GetChild(0));
-                break;
-            case CurrentPuzzle.Samus:
-                Destroy(puzzleSamus.transform.GetChild(0));
-                break;
-            case CurrentPuzzle.Palu:
-                Destroy(puzzlePalu.transform.GetChild(0));
-                break;
-            case CurrentPuzzle.Rosa:
-                Destroy(puzzleRosa.transform.GetChild(0));
-                break;
-            case CurrentPuzzle.Corrin:
-                Destroy(puzzleCorrin.transform.GetChild(0));
-                break;
-            case CurrentPuzzle.Peach:
-                Destroy(puzzlePeach.transform.GetChild(0));
-                break;
-        }
-        currentPuzzle = CurrentPuzzle.Null;
+        objWin.SetActive(false);
+        Destroy(prefabCurrent);
+        if (currentUI != null)
+            currentUI.SetActive(false);
+        currentUI = null;
+        prefabCurrent = null;
     }
 
-        public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
+    public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
         m_PreviousStatus = previousStatus;
         m_NewStatus = newStatus;
@@ -144,16 +280,24 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
-
+            if (currentUI != null)
+                currentUI.SetActive(true);
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
-
+            if (objWin.activeInHierarchy)
+            {
+                currentPuzzle = CurrentPuzzle.Null;
+                HidePuzzles();
+                objWin.SetActive(false);
+            }
+            if (currentUI != null)
+                currentUI.SetActive(false);
         }
         else
         {
-
+            
         }
     }
 }

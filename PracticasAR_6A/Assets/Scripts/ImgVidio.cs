@@ -22,12 +22,12 @@ public class ImgVidio : MonoBehaviour
     {
         if(statusImg.isDetected && !videoPlaying)
         {
-            Debug.Log("Inicia vidio");
+            //Debug.Log("Inicia vidio");
             PlayButton();
         }
         else if(!statusImg.isDetected)
         {
-            Debug.Log("Pausa vidio");
+            //Debug.Log("Pausa vidio");
             PauseButton();
         }
     }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
     <Tracking>
+        <ImageTarget name="OldSchool.Front" size="1.000000 1.000000"/>
         <ImageTarget name="OldSchool.Right" size="1.000000 1.000000"/>
+        <ImageTarget name="OldSchool.Bottom" size="1.000000 1.000000"/>
+        <ImageTarget name="OldSchool.Top" size="1.000000 1.000000"/>
         <ImageTarget name="OldSchool.Back" size="1.000000 1.000000"/>
         <ImageTarget name="OldSchool.Left" size="1.000000 1.000000"/>
-        <ImageTarget name="OldSchool.Bottom" size="1.000000 1.000000"/>
-        <ImageTarget name="OldSchool.Front" size="1.000000 1.000000"/>
-        <ImageTarget name="OldSchool.Top" size="1.000000 1.000000"/>
         <MultiTarget name="OldSchool">
             <Part name="OldSchool.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="OldSchool.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>

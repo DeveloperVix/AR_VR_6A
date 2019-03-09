@@ -21,22 +21,6 @@ public class ImgVidio : MonoBehaviour, ITrackableEventHandler
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
     }
 
-
-    private void Update()
-    {
-        if (statusImg.isDetected && !videoPlaying)
-        {
-            Debug.Log("inicia video");
-            Playbutton();
-        }
-        else if (!statusImg.isDetected)
-        {
-            Debug.Log("Pauso video");
-            PauseButton();
-            anim.SetBool("Transicion", false);
-        }
-    }
-
     public void OnTrackableStateChanged(
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
@@ -46,15 +30,15 @@ public class ImgVidio : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
             Debug.Log("inicia video");
             Playbutton();
+
+            anim.SetBool("Transicion", true);
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             Debug.Log("Pauso video");
             PauseButton();
             anim.SetBool("Transicion", false);
@@ -70,7 +54,6 @@ public class ImgVidio : MonoBehaviour, ITrackableEventHandler
     public void Playbutton()
     {
         miVidio.Play();
-        anim.SetBool("Transicion", true);
         Debug.Log("Playyyyyyy");
         videoPlaying = true;
     }

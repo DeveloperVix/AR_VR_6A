@@ -5,8 +5,7 @@ using UnityEngine;
 public class Capsule : MonoBehaviour
 {
     public Animator anim;
-    public GameObject capsule;
-    public LayerMask unitSelected;
+    public LayerMask capsula;
     Vector3 mouseInitialPosition;
     Camera thisCamera;//variable para obtener este componente
     // Start is called before the first frame update
@@ -24,7 +23,7 @@ public class Capsule : MonoBehaviour
             Debug.Log("boton izquierdo");
             mouseInitialPosition = thisCamera.ScreenToViewportPoint(Input.mousePosition);
             RaycastHit rayHit;//fisicas raycast(objetos que tengan un collider)
-            if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, unitSelected))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
+            if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, capsula))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
             {
                 Debug.Log("capsula");
                 anim.SetBool("Transicion", true);

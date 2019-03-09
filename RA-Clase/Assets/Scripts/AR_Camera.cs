@@ -28,7 +28,23 @@ public class AR_Camera : MonoBehaviour
             RaycastHit rayhit;
             if(Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayhit, Mathf.Infinity, objSeleccionado))
             {
-                seleccionado = rayhit.collider.gameObject;
+                seleccionFigura selFigura = rayhit.collider.GetComponent<seleccionFigura>();
+                Debug.Log("figura seleccionada");
+                
+                if(!selFigura.estaSeleccionada)
+                {
+                    seleccionado = rayhit.collider.gameObject;
+                    selFigura.estaSeleccionada = true;
+                    selFigura.Seleccionado();
+                }        
+            }
+
+            else
+            {
+                seleccionado = null;
+                seleccionFigura selFigura = rayhit.collider.GetComponent<seleccionFigura>();
+                selFigura.estaSeleccionada = false;
+                selFigura.Seleccionado();
             }
         }
     }

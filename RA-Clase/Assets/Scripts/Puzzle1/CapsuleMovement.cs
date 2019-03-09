@@ -9,6 +9,7 @@ public class CapsuleMovement : MonoBehaviour
     DefaultTrackableEventHandler statusImg;
     protected NavMeshAgent agente;
     protected Vector3 target;
+    protected seleccionFigura selFig;
 
     GameObject cameraObj;
     protected Camera camera;
@@ -22,19 +23,24 @@ public class CapsuleMovement : MonoBehaviour
         agente = gameObject.GetComponent<NavMeshAgent>();
         cameraObj = GameObject.Find("ARCamera");
         camera = cameraObj.GetComponent<Camera>();
+        selFig = gameObject.GetComponent<seleccionFigura>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(statusImg)
         {
-            Debug.Log("Clic izquierdo");
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButtonDown(1))
             {
-                target = hit.point;
-                agente.SetDestination(target);
+                Debug.Log("Clic derecho");
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit) && selFig.estaSeleccionada)
+                {
+                    Debug.Log(hit.collider.gameObject.layer);
+                    target = hit.point;
+                    agente.SetDestination(target);
+                }
             }
         }
         

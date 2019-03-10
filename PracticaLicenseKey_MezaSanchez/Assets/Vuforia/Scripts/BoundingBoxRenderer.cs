@@ -47,7 +47,7 @@ public class BoundingBoxRenderer : MonoBehaviour
         mLineMaterial.color = Color.white;
         
         GL.Begin(GL.LINES);
-
+        
         // Bottom XZ quad
         GL.Vertex3(-0.5f, -0.5f, -0.5f);
         GL.Vertex3( 0.5f, -0.5f, -0.5f);

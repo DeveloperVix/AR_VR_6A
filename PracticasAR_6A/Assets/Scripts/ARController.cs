@@ -25,7 +25,14 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
     public GameObject Botones;
     public GameObject TitulosQR;
     public GameObject ImagenesDiferencias;
-    public Transform CuboPuntero; 
+    public GameObject GANASTE;
+    public GameObject RotacionPuzzle;
+    public Transform CuboPuntero;
+    public GameObject CuboDonald;
+    public GameObject JuegoEsfera;
+    public GameObject CapsulaMickey;
+    public GameObject nivel;
+    
     /*public GameObject minijuegoMariposa;
     public GameObject minijuegoDonald;
     public GameObject minijuegoMickey;
@@ -33,6 +40,8 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
     int valor;
     int _valor;
     string op;
+    int direccion;
+    Rigidbody EsferaRB;
 
     Ray ray;
     RaycastHit rayHit;
@@ -50,6 +59,16 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
         Botones.SetActive(false);
         TitulosQR.SetActive(false);
         ImagenesDiferencias.SetActive(false);
+        CuboDonald.SetActive(false);
+        
+        CapsulaMickey.SetActive(false);
+        RotacionPuzzle.SetActive(false);
+
+        EsferaRB.constraints = RigidbodyConstraints.FreezeAll;
+        
+        nivel.SetActive(false);
+        
+        
     }
 
     // Update is called once per frame
@@ -67,7 +86,7 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
            
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("CaraMickey")))
             {
-                //minijuegoMickey.SetActive(true);
+                CapsulaMickey.SetActive(true);
                 statusPuzzle = estadosPuzzle.CaraMickey;
                 for (int i = 0; i < waypoints.Length; i++)
                 {
@@ -92,12 +111,16 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
             {
 
                 statusPuzzle = estadosPuzzle.CaraMickeyFeliz;
+                RotacionPuzzle.SetActive(true);
+                Rotacion(direccion);
                 Debug.Log("CaraMickeyFeliz");
             }
 
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("CaraMickeyGrosero")))
             {
                 statusPuzzle = estadosPuzzle.CaraMickeyGrosero;
+                
+             
                 Debug.Log("CaraMickeyGrosero");
             }
 
@@ -106,15 +129,19 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
                 statusPuzzle = estadosPuzzle.CaraDonald;
                 //minijuegoDonald.SetActive(true);
                 Botones.SetActive(true);
+                CuboDonald.SetActive(true);
                 // MinijuegoDonald(valor);
-                Aumento(valor);
-                Decremento(_valor);
+               // Aumento(valor);
+                //Decremento(_valor);
             }
 
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("CaraMariposa")))
             {
                 statusPuzzle = estadosPuzzle.CaraMariposa;
-                //minijuegoMariposa.SetActive(true);
+                EsferaRB =JuegoEsfera.GetComponent<Rigidbody>();
+                EsferaRB.useGravity = true;
+                nivel.SetActive(true);
+                //MiniJuegoEsfera();
                 Debug.Log("CaraMariposa");
             }
 
@@ -172,20 +199,20 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
             case "up":
                 cuboTranslacion.x += 0;
                 cuboTranslacion.y += 0;
-                cuboTranslacion.z += .1f;
+                cuboTranslacion.z += .05f;
                 break;
             case "down":
                 cuboTranslacion.x += 0;
                 cuboTranslacion.y += -0;
-                cuboTranslacion.z += -.1f;
+                cuboTranslacion.z += -.05f;
                 break;
             case "left":
-                cuboTranslacion.x += -.1f;
+                cuboTranslacion.x += -.05f;
                 cuboTranslacion.y += 0;
                 cuboTranslacion.z += 0;
                 break;
             case "right":
-                cuboTranslacion.x += .1f;
+                cuboTranslacion.x += .05f;
                 cuboTranslacion.y += 0;
                 cuboTranslacion.z += 0;
                 break;
@@ -194,9 +221,38 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
               
         }
         CuboPuntero.transform.position = cuboTranslacion;
+
+
     }
 
-    
+   /* public void MiniJuegoEsfera()
+    {
+        if(GANASTE.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE)
+        {
+            EsferaRB.constraints = RigidbodyConstraints.FreezeAll;
+            
+        }
+        else
+        {
+            if(EsferaRB.constraints == RigidbodyConstraints.FreezeAll)
+            {
+                EsferaRB.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+        }
+    }
+    */
+
+    public void Rotacion(int direccion)
+    {
+        GameObject eje = GameObject.Find("Eje");
+
+        Debug.Log(direccion);
+        eje.transform.Translate(0, 0, 0);
+        eje.transform.Rotate(0, direccion, 0);
+        direccion += direccion;
+
+        
+    }
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
@@ -210,6 +266,7 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
             if (statusPuzzle==estadosPuzzle.CaraDonald)
             {
                 Botones.SetActive(true);
+                CuboDonald.SetActive(true);
                 //minijuegoDonald.SetActive(true);
             }
             if (statusPuzzle == estadosPuzzle.CaraQR)
@@ -217,22 +274,56 @@ public class ARController : MonoBehaviour, ITrackableEventHandler
                 TitulosQR.SetActive(true);
                 ImagenesDiferencias.SetActive(true);
             }
+            if (statusPuzzle == estadosPuzzle.CaraMariposa)
+            {
+                
+                nivel.SetActive(true);
+                
+                EsferaRB.useGravity = true;
+            }
+            if(statusPuzzle == estadosPuzzle.CaraMickey)
+            {
+                CapsulaMickey.SetActive(true);
+                
+            }
+            if (statusPuzzle == estadosPuzzle.CaraMickeyGrosero)
+            {
+                
+            }
+            if (statusPuzzle == estadosPuzzle.CaraMickeyFeliz)
+            {
+                RotacionPuzzle.SetActive(true);
+            }
 
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
             Botones.SetActive(false);
+            CuboDonald.SetActive(false);
             //minijuegoMariposa.SetActive(false);
             //minijuegoMickey.SetActive(false);
             TitulosQR.SetActive(false);
             ImagenesDiferencias.SetActive(false);
+            JuegoEsfera.SetActive(false);
+            CapsulaMickey.SetActive(false);
+           // EsferaRB.constraints = RigidbodyConstraints.FreezeAll;
+            //EsferaRB.useGravity = false;
+            RotacionPuzzle.SetActive(false);
+
         }
         else
         {
             Botones.SetActive(false);
             TitulosQR.SetActive(false);
             ImagenesDiferencias.SetActive(false);
+            CuboDonald.SetActive(false);
+            JuegoEsfera.SetActive(false);
+            CapsulaMickey.SetActive(false);
+            EsferaRB.constraints = RigidbodyConstraints.FreezeAll;
+            EsferaRB.useGravity = false;
+            //nivel.SetActive(false);
+            RotacionPuzzle.SetActive(false);
         }
     }
 }

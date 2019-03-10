@@ -9,8 +9,6 @@ public class AR_Camera : MonoBehaviour
 
     Camera thisCamera;
 
-    public GameObject seleccionado;
-
     Vector3 mousePosition;
 
     // Start is called before the first frame update
@@ -33,7 +31,6 @@ public class AR_Camera : MonoBehaviour
                 
                 if(!selFigura.estaSeleccionada)
                 {
-                    seleccionado = rayhit.collider.gameObject;
                     selFigura.estaSeleccionada = true;
                     selFigura.Seleccionado();
                 }        
@@ -41,10 +38,9 @@ public class AR_Camera : MonoBehaviour
 
             else
             {
-                seleccionado = null;
-                seleccionFigura selFigura = rayhit.collider.GetComponent<seleccionFigura>();
-                selFigura.estaSeleccionada = false;
-                selFigura.Seleccionado();
+                seleccionFigura selFig = rayhit.collider.GetComponent<seleccionFigura>();
+                selFig.estaSeleccionada = false;
+                selFig.Seleccionado();
             }
         }
     }

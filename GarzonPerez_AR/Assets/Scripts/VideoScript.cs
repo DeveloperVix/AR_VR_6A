@@ -14,13 +14,16 @@ public class VideoScript : MonoBehaviour
     public Animator anim;
     public Animator animButton;
     public Animator CilindroAnim;
+    public Animator Rodi;
 
 
     public GameObject cilindro;
     public GameObject win;
     public GameObject Pelota, pelota2;
-    public GameObject ButtonsPuzzle3;
-
+    public GameObject es;
+    public GameObject es1;
+    public GameObject es2;
+    public GameObject Rodillo;
 
     public float range = 10f;
     public int VidaCilindro1= 12;
@@ -29,7 +32,6 @@ public class VideoScript : MonoBehaviour
     {
         Statusimg = GetComponent<DefaultTrackableEventHandler>();
     }
-    
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,17 +40,25 @@ public class VideoScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if(cilindro == true)
+                if (cilindro == true)
                 {
                     VidaCilindro1 -= 4;
                     CilindroAnim.speed += 1;
-                    if(VidaCilindro1 <= 0)
+                    if (VidaCilindro1 <= 0)
                     {
                         Destroy(cilindro);
                         StartCoroutine("Contador");
                     }
                 }
-                if(Pelota == true)
+            }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit1;
+            if (Physics.Raycast(ray1, out hit1))
+            {
+                if (Pelota == true)
                 {
                     Destroy(Pelota);
                     pelota2.SetActive(true);
@@ -58,7 +68,41 @@ public class VideoScript : MonoBehaviour
                         StartCoroutine("Contador");
                     }
                 }
-
+            }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit2;
+            if (Physics.Raycast(ray2, out hit2))
+            {
+                if (es == true)
+                {
+                    es.SetActive(false);
+                    es1.SetActive(true);
+                }
+                if (es1 == true)
+                {
+                    es1.SetActive(false);
+                    es2.SetActive(true);
+                }
+                if (es2 == true)
+                {
+                    es2.SetActive(false);
+                    StartCoroutine("Puzzle4");
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit2;
+            if (Physics.Raycast(ray2, out hit2))
+            {
+                if(Rodillo == true)
+                {
+                    StartCoroutine("Rodillera");
+                }
             }
         }
         if (Statusimg.isDetected && OnPlays){
@@ -88,6 +132,21 @@ public class VideoScript : MonoBehaviour
     {
         win.SetActive(true);
         pelota2.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        win.SetActive(false);
+    }
+    IEnumerator Puzzle4()
+    {
+        win.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        win.SetActive(false);
+    }
+    IEnumerator Rodillera()
+    {
+        Rodi.SetBool("Rodilla", true);
+        yield return new WaitForSeconds(2);
+        win.SetActive(true);
+        Destroy(Rodi);
         yield return new WaitForSeconds(2f);
         win.SetActive(false);
     }

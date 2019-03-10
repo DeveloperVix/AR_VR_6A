@@ -43,12 +43,6 @@ public class ImgVidio : MonoBehaviour, ITrackableEventHandler
             PauseButton();
             anim.SetBool("Transicion", false);
         }
-        else
-        {
-            // For combo of previousStatus=UNKNOWN + newStatus=UNKNOWN|NOT_FOUND
-            // Vuforia is starting, but tracking has not been lost or found yet
-            // Call OnTrackingLost() to hide the augmentations
-        }
     }
 
     public void Playbutton()

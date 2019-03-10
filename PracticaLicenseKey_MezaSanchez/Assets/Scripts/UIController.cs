@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        if (instace == null)
+        /*if (instace == null)
         {
             instace = this;
             DontDestroyOnLoad(this);
@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
         else
         {
             Debug.LogError("hay mas de una instancial!!");
-        }
+        }*/
 
         objLoading = GameObject.Find("Canvas/LoadingPanel");
         objLoading.SetActive(false);

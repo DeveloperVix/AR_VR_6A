@@ -9,15 +9,19 @@ public class Seleccion : MonoBehaviour
     public MeshRenderer meshRenderer;
     public Animator anim;
     public bool isSelected = false;
+    public bool changeColor = true;
+    public int cont;
+    public int ColorActual;
+    //public int rand = Random.Range(0,4);
 
-    void Start()
+    public virtual void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();//obtener material 
         anim = GetComponent<Animator>();
         ChangeColors();
     }
 
-    public void ChangeColors()
+    public virtual void ChangeColors()
     {
         #region if para seleccion
         /*if (!isSelected)//preguntar si la unidad esta seleccionada
@@ -32,21 +36,20 @@ public class Seleccion : MonoBehaviour
         }*/
         #endregion 
         StartCoroutine(CambioColor());
-        
     }
-
-    IEnumerator CambioColor()
+    
+    public virtual IEnumerator CambioColor()
     {
-        int cont = 0;
         int maxCont = colores.Length;
-        while (true)
+        while (changeColor)
         {
             Debug.Log("CAMBIANDO DE COLOR");
             meshRenderer.material = colores[cont];
             cont++;
+            ColorActual = cont;
             if (cont >= maxCont)
             {
-                cont = 0;
+                cont = 0;                
             }
             yield return new WaitForSeconds(0.5f);
         }

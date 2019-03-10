@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Puzzles : MonoBehaviour
 {
+    public GameObject objetoxd;
    // public Animator Escala11;
 
     [SerializeField]
@@ -15,18 +16,18 @@ public class Puzzles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     void Update()
     {
-        
+       
     }
 
     public virtual void Movimiento()                                                 
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime); 
-        if (transform.position == waypoints[waypointIndex].transform.position)  
+        objetoxd.transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime); 
+        if (objetoxd.transform.position == waypoints[waypointIndex].transform.position)  
         {
             waypointIndex += 1;                                               
         }
@@ -38,8 +39,8 @@ public class Puzzles : MonoBehaviour
 
     public virtual void Movimiento2()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
-        if (transform.position == waypoints[waypointIndex].transform.position)
+        objetoxd.transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+        if (objetoxd.transform.position == waypoints[waypointIndex].transform.position)
         {
             waypointIndex += 1;
         }
@@ -51,8 +52,8 @@ public class Puzzles : MonoBehaviour
 
     public virtual void Movimiento3()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
-        if (transform.position == waypoints[waypointIndex].transform.position)
+        objetoxd.transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+        if (objetoxd.transform.position == waypoints[waypointIndex].transform.position)
         {
             waypointIndex += 1;
         }
@@ -66,4 +67,6 @@ public class Puzzles : MonoBehaviour
      {
          Escala11.SetBool("entrada", true);
      }*/
+     
+
 }

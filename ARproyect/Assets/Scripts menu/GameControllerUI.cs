@@ -10,6 +10,7 @@ public class GameControllerUI : MonoBehaviour
     public static GameControllerUI Instance { get { return instance; } }
 
     public GameObject objLoading;
+    
 
     // Start is called before the first frame update
     void Start()

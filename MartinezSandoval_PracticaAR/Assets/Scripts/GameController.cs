@@ -14,9 +14,11 @@ public class GameController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        act = this;
-        DontDestroyOnLoad(this);
+        else
+        {
+            act = this;
+            DontDestroyOnLoad(this);
+        }
 
 
     }
@@ -58,10 +60,9 @@ public class GameController : MonoBehaviour {
     }
 
     IEnumerator LoadScene(string scene)
-    {                               
+    {
         AsyncOperation load = SceneManager.LoadSceneAsync(scene);
-        yield return load.isDone;
-        load.allowSceneActivation = true;
+        yield break;
     }
 
     public void ButtonExit()

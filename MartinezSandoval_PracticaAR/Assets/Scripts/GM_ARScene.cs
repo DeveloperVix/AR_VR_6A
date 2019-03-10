@@ -20,10 +20,10 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     [Header("Main")]
     public Camera mainCamera;
     public TrackableBehaviour puzzleTrack;
-    public GameObject puzzleBayo, puzzleSamus, puzzlePalu, puzzleRosa, puzzleCorrin, puzzlePeach;
+    public GameObject puzzleBayo, puzzleSamus, puzzlePalu, puzzleBowser, puzzleDaisy, puzzlePit;
 
 
-    public enum CurrentPuzzle { Null, Bayo, Samus, Palu, Rosa, Corrin, Peach }
+    public enum CurrentPuzzle { Null, Bayo, Samus, Palu, Daisy, Bowser, Pit }
     public CurrentPuzzle currentPuzzle = CurrentPuzzle.Null;
 
 
@@ -31,7 +31,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     CurrentPuzzleFunc currentPuzzleFunc;
     [Header("Prefabs")]
     public GameObject prefabBayo;
-    public GameObject prefabSamus, prefabPalu, prefabRosa, prefabCorrin, prefabPeach;
+    public GameObject prefabSamus, prefabPalu, prefabBowser, prefabDaisy, prefabPit;
     [HideInInspector]
     public GameObject prefabCurrent;
     [HideInInspector]
@@ -50,7 +50,6 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     [HideInInspector]
     Vector3 bayoNewPos;
     #endregion
-
     [Header("Samus Components")]
     #region PuzzleSamus Vars
     public GameObject samusUI;
@@ -58,14 +57,24 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     public int samusScaleToWin;
 
     #endregion
+    [Header("Pit Components")]
+    #region PuzzlePit Vars
+    public GameObject pitUI;
+    Rigidbody pitSphereRB;
+    Vector3 pitLastPos;
+    #endregion
+    [Header("Palu Components")]
+    #region PuzzlePalu Vars
+    public GameObject paluUI;
+    Transform paluSphere;
+    #endregion
 
-    public GameObject corrinUI;
+    public GameObject daisyUI;
 
     [Header("Win")]
     public GameObject objWin;
 
-
-    Ray ray;
+    //Ray ray;
     RaycastHit rayHit;
     
     // Use this for initialization
@@ -81,13 +90,13 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 	void Update ()
     {
         RayClick();
-        if(currentPuzzle != CurrentPuzzle.Null) currentPuzzleFunc();
+        if(currentPuzzleFunc != null) currentPuzzleFunc();
 	}
 
     #region Puzzle Bayo Functions
     void PuzzleBayo()
     {
-        if (objWin.activeInHierarchy) return;
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
         if(bayoMove)
         {
             print("moving");
@@ -143,11 +152,11 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     #region Puzzle Samus Functions
     void PuzzleSamus()
     {
-        if (objWin.activeInHierarchy) return;
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
         if(samusSphere.localScale.x > 1f)
         {
             Vector3 newScale = samusSphere.localScale;
-            float reduceSpeed = 0.08f;
+            float reduceSpeed = 0.02f;
             newScale.x -= reduceSpeed;
             newScale.y -= reduceSpeed;
             newScale.z -= reduceSpeed;
@@ -170,11 +179,62 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     {
         if (objWin.activeInHierarchy) return;
         Vector3 newScale = samusSphere.localScale;
-        float augmentSpeed = 1f;
+        float augmentSpeed = 0.24f;
         newScale.x += augmentSpeed;
         newScale.y += augmentSpeed;
         newScale.z += augmentSpeed;
         samusSphere.localScale = newScale;
+    }
+
+    #endregion
+
+    #region Puzzle Pit Functions
+    void PuzzlePit()
+    {
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE)
+
+        {
+            print("do freeze all");
+            pitSphereRB.constraints = RigidbodyConstraints.FreezeAll;
+            if (pitLastPos == Vector3.zero) pitLastPos = pitSphereRB.gameObject.transform.position;
+        }
+        else
+        {
+            if (pitSphereRB.constraints == RigidbodyConstraints.FreezeAll)
+            {
+                print("undo freeze all");
+                pitSphereRB.constraints = RigidbodyConstraints.FreezeRotation;
+                pitLastPos = Vector3.zero;
+            }
+            
+        }
+    }
+    #endregion
+
+    #region Puzzle Palu Functions
+    void PuzzlePalu()
+    {
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
+
+        if (paluSphere.rotation.eulerAngles.y != 0)
+        {
+            Quaternion rotate = paluSphere.rotation;
+            rotate.y += Quaternion.Euler(0, 0.05f, 0).y;
+            paluSphere.rotation = rotate;
+        }
+
+        if(paluSphere.rotation.eulerAngles.y >= 355f)
+        {
+            objWin.SetActive(true);
+        }
+    }
+
+    public void PaluButton()
+    {
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
+        Quaternion rotate = paluSphere.rotation;
+        rotate.y -= Quaternion.Euler(0, 25f, 0).y;
+        paluSphere.rotation = rotate;
     }
     #endregion
 
@@ -190,75 +250,91 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 
     void RayClick()
     {
-        if (!Input.GetMouseButtonUp(0)) return;
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Bayo")))
+        if (Input.GetMouseButtonUp(0))
         {
-            if (currentPuzzle == CurrentPuzzle.Bayo) return;
-            HidePuzzles();
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity))
+            {
+                if (rayHit.transform.gameObject == puzzleBayo)
+                {
+                    if (currentPuzzle == CurrentPuzzle.Bayo) return;
+                    HidePuzzles();
+                    print("Bayo");
+                    currentUI = bayoUI;
+                    currentUI.SetActive(true);
+                    prefabCurrent = Instantiate(prefabBayo, puzzleBayo.transform);
 
-            currentUI = bayoUI;
-            currentUI.SetActive(true);
-            prefabCurrent = Instantiate(prefabBayo, puzzleBayo.transform);
+                    bayoCurrentPos.x = 1;
+                    bayoCurrentPos.y = 0;
+                    currentPuzzleFunc = PuzzleBayo;
+                    bayoMove = false;
+                    currentPuzzle = CurrentPuzzle.Bayo;
+                    return;
+                }
 
-            bayoCurrentPos.x = 1;
-            bayoCurrentPos.y = 0;
-            currentPuzzleFunc = PuzzleBayo;
-            
-            currentPuzzle = CurrentPuzzle.Bayo;
-            return;
+                if (rayHit.transform.gameObject == puzzleSamus)
+                {
+                    if (currentPuzzle == CurrentPuzzle.Samus) return;
+                    HidePuzzles();
+                    print("Samus");
+                    currentUI = samusUI;
+                    currentUI.SetActive(true);
+                    prefabCurrent = Instantiate(prefabSamus, puzzleSamus.transform);
+                    samusSphere = prefabCurrent.transform.GetChild(0).transform;
+                    currentPuzzleFunc = PuzzleSamus;
+                    currentPuzzle = CurrentPuzzle.Samus;
+                    return;
+                }
+
+                if (rayHit.transform.gameObject == puzzleDaisy)
+                {
+                    HidePuzzles();
+                    print("Daisy");
+                    currentUI = daisyUI;
+                    currentUI.SetActive(true);
+                    prefabCurrent = Instantiate(prefabDaisy, puzzleDaisy.transform);
+
+                    currentPuzzle = CurrentPuzzle.Daisy;
+
+                    return;
+                }
+
+                if (rayHit.transform.gameObject == puzzlePalu)
+                {
+                    if (currentPuzzle == CurrentPuzzle.Palu) return;
+                    HidePuzzles();
+                    print("Palu");
+                    prefabCurrent = Instantiate(prefabPalu, puzzlePalu.transform);
+                    paluSphere = prefabCurrent.transform.GetChild(0);
+                    currentPuzzleFunc = PuzzlePalu;
+                    currentPuzzle = CurrentPuzzle.Palu;
+                    return;
+                }
+
+                if (rayHit.transform.gameObject == puzzlePit)
+                {
+                    if (currentPuzzle == CurrentPuzzle.Pit) return;
+                    HidePuzzles();
+                    print("Pit");
+                    currentUI = pitUI;
+                    currentPuzzleFunc = PuzzlePit;
+                    pitUI.SetActive(true);
+                    prefabCurrent = Instantiate(prefabPit, puzzlePit.transform);
+                    pitSphereRB = prefabCurrent.transform.GetChild(0).GetComponent<Rigidbody>();
+                    currentPuzzle = CurrentPuzzle.Pit;
+                    return;
+                }
+
+                if (rayHit.transform.gameObject == puzzleBowser)
+                {
+                    HidePuzzles();
+                    print("Bowser");
+                    Instantiate(prefabBowser, puzzleBowser.transform);
+                    currentPuzzle = CurrentPuzzle.Bowser;
+                    return;
+                }
+            }
         }
-
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Corrin")))
-        {
-            HidePuzzles();
-
-            currentUI = corrinUI;
-            currentUI.SetActive(true);
-            prefabCurrent = Instantiate(prefabCorrin, puzzleCorrin.transform);
-
-            currentPuzzle = CurrentPuzzle.Corrin;
-            
-            return;
-        }
-
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Peach")))
-        {
-            HidePuzzles();
-            Instantiate(prefabPeach, puzzlePeach.transform);
-            currentPuzzle = CurrentPuzzle.Peach;
-            return;
-        }
-
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Samus")))
-        {
-            if (currentPuzzle == CurrentPuzzle.Samus) return;
-            HidePuzzles();
-            print("nani");
-            currentUI = samusUI;
-            currentUI.SetActive(true);
-            prefabCurrent = Instantiate(prefabSamus, puzzleSamus.transform);
-            samusSphere = prefabCurrent.transform.GetChild(0).transform;
-            currentPuzzleFunc = PuzzleSamus;
-            currentPuzzle = CurrentPuzzle.Samus;
-            return;
-        }
-
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Rosa")))
-        {
-            HidePuzzles();
-            Instantiate(prefabRosa, puzzleRosa.transform);
-            currentPuzzle = CurrentPuzzle.Rosa;
-            return;
-        }
-
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Palu")))
-        {
-            HidePuzzles();
-            Instantiate(prefabPalu, puzzlePalu.transform);
-            currentPuzzle = CurrentPuzzle.Palu;
-            return;
-        }
-
+        
     }
 
     void HidePuzzles()
@@ -268,6 +344,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
         if (currentUI != null)
             currentUI.SetActive(false);
         currentUI = null;
+        currentPuzzleFunc = null;
         prefabCurrent = null;
     }
 
@@ -289,6 +366,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
             if (objWin.activeInHierarchy)
             {
                 currentPuzzle = CurrentPuzzle.Null;
+                currentPuzzleFunc = null;
                 HidePuzzles();
                 objWin.SetActive(false);
             }

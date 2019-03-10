@@ -2,19 +2,19 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="CQR-para-art" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Top" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Left" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Front" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Right" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Bottom" size="1.000000 1.000000"/>
-        <ImageTarget name="ProyectoAR.Back" size="1.000000 1.000000"/>
-        <MultiTarget name="ProyectoAR">
-            <Part name="ProyectoAR.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
-            <Part name="ProyectoAR.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
-            <Part name="ProyectoAR.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
-            <Part name="ProyectoAR.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
-            <Part name="ProyectoAR.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
-            <Part name="ProyectoAR.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        <ImageTarget name="CuboidAR.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidAR.Left" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidAR.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidAR.Bottom" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidAR.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="CuboidAR.Right" size="1.000000 1.000000"/>
+        <MultiTarget name="CuboidAR">
+            <Part name="CuboidAR.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="CuboidAR.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="CuboidAR.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="CuboidAR.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="CuboidAR.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="CuboidAR.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
         </MultiTarget>
     </Tracking>
 </QCARConfig>

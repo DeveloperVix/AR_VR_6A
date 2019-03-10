@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CubeScript : MonoBehaviour
 {
     //OBJETOS A UTILIZAR
-    public GameObject cube;
+
     public GameObject sphere;
     public GameObject sphere2;
     public GameObject sphere3;
+    public GameObject redCubeObj;
+    public GameObject greenCubeObj;
+    public GameObject greenCube2Obj;
 
     //LAYERS DE OBJETOS
     public LayerMask cubeSelected;
     public LayerMask sphereSelected;
     public LayerMask sphereSelected2;
     public LayerMask sphereSelected3;
-
-    //LAYERS DE CARAS
-    public LayerMask layer1;
-    public LayerMask layer2;
-    public LayerMask layer3;
-    public LayerMask layer4;
-    public LayerMask layer5;
-    public LayerMask layer6;
+    public LayerMask redCubeSelected;
+    public LayerMask greenCubeSelected;
+    public LayerMask yellowCubeSelected;
 
     //MATERIAL
     public Material redCube;
@@ -60,6 +59,8 @@ public class CubeScript : MonoBehaviour
                 mouseInitialPosition = thisCamera.ScreenToViewportPoint(Input.mousePosition);                                        //Transforma las coordenadas de pantalla en un espacio de viewport(nos retorna coordenadas de 0 a 1)
                 RaycastHit rayHit;                                                                                                   //Fisicas raycast(objetos que tengan un collider)
 
+
+
                 //PUZZLE 1
                 if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, sphereSelected))   //Si el click del mouse colisiona con el layer de sphereSelected...
                 {
@@ -90,7 +91,36 @@ public class CubeScript : MonoBehaviour
                 if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, sphereSelected3))  //Si el click del mouse colisiona con el layer de sphereSelected3...
                 {
                     sphere3.transform.Rotate(0, sphere3.transform.rotation.y - 10, 0);                                               //Se le agregara en su rotacion en y - 10
-                } 
+                }
+
+
+
+                //PUZZLE 6
+                if(GameController.act.redImage.activeInHierarchy)
+                {
+                    if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, redCubeSelected))  //Si el click del mouse colisiona con el layer de sphereSelected2...
+                    {
+                        GameController.act.Finish();
+                    }
+                }
+
+                if (GameController.act.greenImage.activeInHierarchy)
+                {
+                    if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, greenCubeSelected))  //Si el click del mouse colisiona con el layer de sphereSelected2...
+                    {
+                        GameController.act.Finish();
+                    }
+                }
+
+                if (GameController.act.yellowImage.activeInHierarchy)
+                {
+                    if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, yellowCubeSelected))  //Si el click del mouse colisiona con el layer de sphereSelected2...
+                    {
+                        GameController.act.Finish();
+                    }
+                }
+
+
             }
         }
         else
@@ -103,4 +133,5 @@ public class CubeScript : MonoBehaviour
         }
         
     }
+
 }

@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Capsule
+  - Sphere
+  - Cube
+  - Cylinder
+  - rojo
+  - verde
+  - azul
+  - amarillo
+  - gema
   layers:
   - Default
   - TransparentFX

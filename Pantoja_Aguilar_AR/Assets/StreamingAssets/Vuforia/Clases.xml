@@ -2,19 +2,19 @@
 <QCARConfig>
     <Tracking>
         <ImageTarget name="Mystletainn" size="1.000000 0.622776"/>
-        <ImageTarget name="cu.Back" size="1.000000 1.000000"/>
-        <ImageTarget name="cu.Right" size="1.000000 0.995556"/>
-        <ImageTarget name="cu.Left" size="1.000000 1.000000"/>
-        <ImageTarget name="cu.Front" size="1.000000 1.000000"/>
-        <ImageTarget name="cu.Top" size="1.000000 1.000000"/>
-        <ImageTarget name="cu.Bottom" size="1.000000 1.000000"/>
-        <MultiTarget name="cu">
-            <Part name="cu.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
-            <Part name="cu.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
-            <Part name="cu.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
-            <Part name="cu.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
-            <Part name="cu.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
-            <Part name="cu.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        <ImageTarget name="cubo.Front" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Right" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Bottom" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="cubo.Left" size="1.000000 1.000000"/>
+        <MultiTarget name="cubo">
+            <Part name="cubo.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="cubo.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="cubo.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="cubo.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="cubo.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="cubo.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
         </MultiTarget>
     </Tracking>
 </QCARConfig>

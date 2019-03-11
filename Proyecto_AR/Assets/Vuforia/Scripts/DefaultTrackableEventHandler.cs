@@ -19,7 +19,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 {
     public bool isDetected = false;
 
-    public Animator animator;
+    
 
 
     #region PROTECTED_MEMBER_VARIABLES
@@ -37,7 +37,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
-        animator = GetComponent<Animator>();
+       
     }
 
     protected virtual void OnDestroy()
@@ -68,7 +68,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
             isDetected = true;
-            animator.SetBool("Detected", isDetected);
+            
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
@@ -76,7 +76,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
             isDetected = false;
-            animator.SetBool("Detected", isDetected);
+            
         }
         else
         {
@@ -85,7 +85,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
             isDetected = false;
-            animator.SetBool("Detected", isDetected);
+            
         }
     }
 

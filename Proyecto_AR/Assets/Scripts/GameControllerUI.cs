@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameControllerUI : MonoBehaviour
 {
     public GameObject objLoading;
+    
 
-    private static GameControllerUI instance;    //Herramientas de Single Toon (?) que te permite instanciar este script en otros scripts
+    private static GameControllerUI instance;    //Herramientas de Singleton que te permite instanciar este script en otros scripts
 
     public static GameControllerUI Instance { get { return instance; } }
 
@@ -16,6 +17,8 @@ public class GameControllerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         if ( instance == null)
         {
             instance = this;
@@ -30,6 +33,7 @@ public class GameControllerUI : MonoBehaviour
         
     }
 
+    
     void OnEnable()
     {
         Debug.LogError("OnEnable llamado!");
@@ -48,8 +52,8 @@ public class GameControllerUI : MonoBehaviour
     {
         Debug.LogError("Escena cargada");
         objLoading = GameObject.Find("Canvas/BackgroundLoading");
-
         objLoading.SetActive(false);
+        GameObject Capsule = GameObject.Find("MultiTarget/ChildTargets/PKMNCUBE.Left/Capsule");
     }
 
     #region Buttons UI

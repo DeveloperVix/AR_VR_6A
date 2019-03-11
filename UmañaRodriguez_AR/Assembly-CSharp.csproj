@@ -60,9 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BallScript.cs" />
+    <Compile Include="Assets\Scripts\ChallengeController.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\ControllerPuzzle2.cs" />
     <Compile Include="Assets\Scripts\GM_AR.cs" />
     <Compile Include="Assets\Scripts\GM_Menu.cs" />
+    <Compile Include="Assets\Scripts\Puzzle2.cs" />
+    <Compile Include="Assets\Scripts\Puzzle3.cs" />
+    <Compile Include="Assets\Scripts\Puzzle4.cs" />
+    <Compile Include="Assets\Scripts\Puzzle5.cs" />
     <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
     <None Include="Assets\Vuforia\Shaders\CameraDiffuse.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

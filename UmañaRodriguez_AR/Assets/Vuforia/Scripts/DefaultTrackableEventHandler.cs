@@ -18,10 +18,10 @@ using UnityEngine.UI;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
-    public UnityEngine.Video.VideoPlayer videoPlayer;
-    public Button playButton;
-    public Button pauseButton;
-    public GameObject imagen;
+    //public UnityEngine.Video.VideoPlayer videoPlayer;
+    //public Button playButton;
+    //public Button pauseButton;
+    //public GameObject imagen;
 
     #region PROTECTED_MEMBER_VARIABLES
 
@@ -89,9 +89,10 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void OnTrackingFound()
     {
-        imagen.GetComponent<Animation>().Play();
+        /*imagen.GetComponent<Animation>().Play();
         playButton.onClick.AddListener(playVideo);
-        pauseButton.onClick.AddListener(pauseVideo);
+        pauseButton.onClick.AddListener(pauseVideo);*/
+        
 
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
@@ -113,7 +114,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void OnTrackingLost()
     {
-        videoPlayer.Pause(); //Para reanudar en video
+        //videoPlayer.Pause(); //Para reanudar en video
         //videoPlayer.Stop(); //Parar el video e iniciar de nuevo
         
 
@@ -134,13 +135,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             component.enabled = false;
     }
 
-    void playVideo() {
+    /*void playVideo() {
         videoPlayer.Play();
     }
     void pauseVideo()
     {
         videoPlayer.Pause();
-    }
+    }*/
 
     #endregion // PROTECTED_METHODS
 }

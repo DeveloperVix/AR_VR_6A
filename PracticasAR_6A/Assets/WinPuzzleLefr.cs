@@ -1,21 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Vuforia;
 
-public class Combinacion : MonoBehaviour
+public class WinPuzzleLefr : MonoBehaviour
 {
-    Renderer rend;
-    public Material material;
-
-  
-
-   
 
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<Renderer>();
+
     }
 
     // Update is called once per frame
@@ -25,14 +18,13 @@ public class Combinacion : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("uno"))
+        if (other.name.Equals("PlayCapsule"))
         {
-            Debug.Log("Encontrado");
-            rend.sharedMaterial = material;
-
-
-
+            Debug.Log("Ganaste");
+            GameObject Victory = GameObject.Find("GANASTE");
+            GameObject capsula = GameObject.Find("PlayCapsule");
+            Destroy(capsula);
+            Victory.SetActive(true);
         }
     }
-    
 }

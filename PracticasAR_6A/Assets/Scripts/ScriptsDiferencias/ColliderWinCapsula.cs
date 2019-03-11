@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ColliderWin : MonoBehaviour
+public class ColliderWinCapsula : MonoBehaviour
 {
-    public GameObject Victori;
-    
+    public GameObject Ganaste;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +18,12 @@ public class ColliderWin : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("EsferaJuego"))
+        if (other.name.Equals("Capsule"))
         {
-            Victori.SetActive(true);
+            Debug.Log("Ganaste");
+            GameObject capsula = GameObject.Find("Capsule");
+            Destroy(capsula);
+            Ganaste.SetActive(true);
         }
     }
 }

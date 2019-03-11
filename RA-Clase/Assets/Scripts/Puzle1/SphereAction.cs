@@ -8,10 +8,13 @@ public class SphereAction : MonoBehaviour
     protected Material off, on;
 
     private MeshRenderer meshRenderer;
+
+    public bool IsOn;
     
     // Start is called before the first frame update
     void Start()
     {
+        IsOn = false;
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -23,11 +26,11 @@ public class SphereAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("Player") && !IsOn)
         {
-            gameObject.SetActive(false);
             meshRenderer.material = on;
-            
+            IsOn = true;
+            other.GetComponent<CapsuleMovement>().contador++;
         }
     }
 }

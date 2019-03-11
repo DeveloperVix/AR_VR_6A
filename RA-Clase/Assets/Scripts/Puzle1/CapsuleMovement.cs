@@ -14,11 +14,14 @@ public class CapsuleMovement : MonoBehaviour
     GameObject cameraObj;
     protected Camera camera;
     public RaycastHit hit;
+    public int contador;
+    public GameObject Capsule;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        contador = 0;
         statusImg = GetComponent<DefaultTrackableEventHandler>();
         agente = gameObject.GetComponent<NavMeshAgent>();
         cameraObj = GameObject.Find("ARCamera");
@@ -29,6 +32,9 @@ public class CapsuleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Animator anima = Capsule.GetComponent<Animator>();
+        bool victory = anima.GetBool("Victory");
+
         if(statusImg)
         {
             if (Input.GetMouseButtonDown(1))
@@ -42,6 +48,14 @@ public class CapsuleMovement : MonoBehaviour
                     agente.SetDestination(target);
                 }
             }
+        }
+
+        if(contador >= 2)
+        {
+            anima.SetBool("Victory", victory = true);
+            GameObject GameObj = GameObject.Find("GameController");
+            GameControllerARGame game = GameObj.GetComponent<GameControllerARGame>();
+            game.PuzlesCompletados++;
         }
         
     }

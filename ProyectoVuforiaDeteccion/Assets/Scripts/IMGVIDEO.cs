@@ -24,7 +24,7 @@ public class IMGVIDEO : MonoBehaviour
         }
         else if (!statusIMG.isDetected) { 
             Debug.Log("PAUSA VIDEO QUE SID");
-            PauseButton();
+           // PauseButton();
         }
     }
 

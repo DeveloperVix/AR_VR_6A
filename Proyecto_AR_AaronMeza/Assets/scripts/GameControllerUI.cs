@@ -10,14 +10,10 @@ public class GameControllerUI : MonoBehaviour
 {
 
     private static GameControllerUI instance;
-
-    public GameObject objLoading;
-
     public static GameControllerUI Instance { get { return instance; } }
 
 
-
-
+    public GameObject objLoading;
 
 
     // Start is called before the first frame update
@@ -31,22 +27,35 @@ public class GameControllerUI : MonoBehaviour
         else
         {
             Debug.Log("Hay más de un instancia!!");
+            Destroy(gameObject);
         }
-
-        objLoading = GameObject.Find("Canvas/BackgroundLoading");
-        objLoading.SetActive(false);
     }
 
 
-    public void create()
+    /* public void create()
+     {
+         objLoading = GameObject.Find("Canvas/BackgroundLoading");
+         objLoading.SetActive(false);
+     }*/
+
+    private void OnEnable()
     {
+        Debug.LogError("OnEnable llamado!");
+        SceneManager.sceneLoaded += onSceneLoaded;  //añadir el metodo propio recbiendo desde el metodo propio una esena y un
+    }
+
+    private void OnDisable()
+    {
+        Debug.LogError("OnDisable llamado!");
+        SceneManager.sceneLoaded -= onSceneLoaded;  //borrar la reinscripcion en el metodo
+    }
+      //Metodo propio
+    void onSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.LogError("Escena cargada");
         objLoading = GameObject.Find("Canvas/BackgroundLoading");
         objLoading.SetActive(false);
     }
-
-
-
-    
 
 
 
@@ -67,7 +76,7 @@ public class GameControllerUI : MonoBehaviour
     IEnumerator LoadScene(int index)
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
-        while(async != null)
+        while(!async.isDone) // mientras la carga asincronica no esté completa vas a retornar nulo
         {
             yield return null;
         }

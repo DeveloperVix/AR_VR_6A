@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 269700243}
   - component: {fileID: 269700242}
   - component: {fileID: 269700241}
+  - component: {fileID: 269700244}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -263,6 +264,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269700244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269700240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af5652906858c845ace520b3f3925d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &660414082
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b4e7313c890144c801efdd38e17945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objLoanding: {fileID: 0}
+  objLoading: {fileID: 0}
 --- !u!4 &660414084
 Transform:
   m_ObjectHideFlags: 0
@@ -494,7 +507,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 660414083}
+      objectReference: {fileID: 269700244}
+    - target: {fileID: 6865664606368087823, guid: 041140e15d31ce946b89fffc06eb6d83,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6865664606192459327, guid: 041140e15d31ce946b89fffc06eb6d83,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -519,7 +537,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 660414083}
+      objectReference: {fileID: 269700244}
+    - target: {fileID: 6865664605182114646, guid: 041140e15d31ce946b89fffc06eb6d83,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitApp
+      objectReference: {fileID: 0}
     - target: {fileID: 6865664605080752552, guid: 041140e15d31ce946b89fffc06eb6d83,
         type: 3}
       propertyPath: m_havePropertiesChanged

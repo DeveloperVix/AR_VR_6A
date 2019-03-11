@@ -21,12 +21,12 @@ public class video : MonoBehaviour
     {
         if (statusIMG.isDetected && !videoPlaying)
         {
-            Debug.Log("INICIA VIDEO lel");
+            //Debug.Log("INICIA VIDEO lel");
             PlayButton();
         }
         else if (!statusIMG.isDetected)
         {
-            Debug.Log("PAUSA VIDEO QUE SI");
+            //Debug.Log("PAUSA VIDEO QUE SI");
             PauseButton();
         }
     }

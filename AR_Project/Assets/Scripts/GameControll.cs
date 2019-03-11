@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class GameControll : MonoBehaviour {
 
@@ -12,7 +13,20 @@ public class GameControll : MonoBehaviour {
     public static GameControll Instance { get { return instance; } }
 
 
-    // Start is called before the first frame update
+    // mask puzzle
+    [SerializeField]
+    private Transform[] Imgs;
+
+    [SerializeField]
+    private GameObject winText;
+
+    public static bool youWin;
+    //navmesh mini game
+
+    public Camera cam;
+    public NavMeshAgent agnt;
+
+
     void Start()
     {
         if(instance == null)
@@ -24,6 +38,36 @@ public class GameControll : MonoBehaviour {
         {
             Debug.Log("Too Many Instances");
             Destroy(gameObject);
+        }
+
+        winText.SetActive(false);
+        youWin = false;
+    }
+
+    void Update()
+    {
+        //maskpuzzle array
+        if (Imgs[0].rotation.z == 0 &&
+           Imgs[1].rotation.z == 0 &&
+           Imgs[2].rotation.z == 0 &&
+           Imgs[3].rotation.z == 0 &&
+           Imgs[4].rotation.z == 0 &&
+           Imgs[5].rotation.z == 0)
+        {
+            youWin = true;
+            winText.SetActive(true);
+        }
+
+        //navmesh mini game mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit))
+                {
+                agnt.SetDestination(hit.point);
+            }
         }
 
     }
@@ -40,7 +84,7 @@ public class GameControll : MonoBehaviour {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // metodo propio
+    // own method
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.LogError("Scene Loaded");

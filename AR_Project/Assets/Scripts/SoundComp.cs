@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundComp : MonoBehaviour
 {
+    public Camera cam;
     public AudioClip[] Aclip;
     public AudioSource myAudioSource;
     string butNum;
@@ -12,11 +13,22 @@ public class SoundComp : MonoBehaviour
 
         myAudioSource = GetComponent<AudioSource>();
 
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                
+            }
+        }
 
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {

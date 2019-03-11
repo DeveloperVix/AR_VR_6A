@@ -72,4 +72,8 @@ public class SceneAndPanelController : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene("Gameplay");
+    }
 }

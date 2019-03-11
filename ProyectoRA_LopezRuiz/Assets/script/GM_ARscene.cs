@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GM_ARscene : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GM_ARscene : MonoBehaviour
 
     public void GoMenu(int index)
     {
-        controller_ui.Instace.LoadNewScene(index);
+        controller_ui.Instance.LoadSceneBtn(index);
     }
+
 }

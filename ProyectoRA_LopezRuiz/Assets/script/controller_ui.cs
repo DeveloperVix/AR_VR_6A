@@ -6,77 +6,73 @@ using UnityEngine.SceneManagement;
 public class controller_ui : MonoBehaviour
 {
 
-    private static controller_ui instace;
-    public static controller_ui Instace { get { return instace; } }
+    private static controller_ui instance;
+    public static controller_ui Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     public GameObject objLoading;
 
-    void Start()
+
+    // Start is called before the first frame update
+    void Awake()
     {
-        //objLoading = GameObject.Find("Canvas/back");
-
-
-        objLoading.SetActive(false);
-        if (instace == null)
+        if (instance == null)
         {
-            instace = this;
-            DontDestroyOnLoad(this);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.LogError("hay mas de una instancial!!");
+            Debug.LogError("Hay mas de una instancia de esta clase, lo voy a destruir");
             Destroy(gameObject);
         }
 
-
+        /*objLoading = GameObject.Find("Canvas/BackgroundLoadingdLoading");
+        objLoading.SetActive(false);*/
     }
 
-    //private void OnEnable()
-    // {
-    //     objLoading = GameObject.Find("Canvas/back");
-    //     objLoading.SetActive(false);
-    // }
-
-    private void OnEnable()
+    void OnEnable()
     {
-        Debug.LogError("OnEnable llamado!");
+        Debug.LogError("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void OnDisable()
+    void OnDisable()
     {
-        Debug.LogError("OnDisable llamado!");
+        Debug.LogError("Remuevo delegante ");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Destroy(gameObject);
     }
 
-    //metodo
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.LogError("Escena cargada");
-        objLoading = GameObject.Find("Canvas/back");
+        objLoading = GameObject.Find("Canvas/backgroundloading");
         objLoading.SetActive(false);
     }
 
-    #region buttons UI
-
-    public void LoadNewScene(int indexScene)
+    IEnumerator LoadScene(int indexScene)
     {
-        objLoading.SetActive(true);
-        StartCoroutine(LoadScene(indexScene));
-    }
 
+        AsyncOperation async = SceneManager.LoadSceneAsync(indexScene);
 
-    IEnumerator LoadScene(int index)
-    {
-        AsyncOperation async = SceneManager.LoadSceneAsync(index);
-        while (!async.isDone)//mientras no este cargada la escena va regresar nulo
+        while (async != null)
         {
             yield return null;
         }
+
     }
 
-    public void BtnExit()
+    #region Buttons //estetica de codigo, sirve para esconder las cosas
+
+    public void LoadSceneBtn(int indexScene)
     {
-        Application.Quit();
+        objLoading.SetActive(true);
+        StartCoroutine(LoadScene(indexScene));
     }
 
     #endregion

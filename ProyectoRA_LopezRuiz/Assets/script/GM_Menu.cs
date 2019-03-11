@@ -14,7 +14,8 @@ public class GM_Menu : MonoBehaviour
 
     public void PlayButton(int index)
     {
-        controller_ui.Instace.LoadNewScene(index);
+     //   controller_ui.Instace.LoadNewScene(index);
+        controller_ui.Instance.LoadSceneBtn(index);
     }
 
     public void ExitApp(int index)
@@ -22,6 +23,6 @@ public class GM_Menu : MonoBehaviour
         //seguro quieres salir?
         //guarda datos
 
-        controller_ui.Instace.BtnExit();
+       // controller_ui.Instance.();
     }
 }

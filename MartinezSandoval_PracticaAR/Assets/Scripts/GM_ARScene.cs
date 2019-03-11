@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
+using TMPro;
 
 public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 {
@@ -20,10 +21,10 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     [Header("Main")]
     public Camera mainCamera;
     public TrackableBehaviour puzzleTrack;
-    public GameObject puzzleBayo, puzzleSamus, puzzlePalu, puzzleBowser, puzzleDaisy, puzzlePit;
+    public GameObject puzzleBayo, puzzleSamus, puzzlePalu, puzzleBowser, puzzleMii, puzzlePit;
 
 
-    public enum CurrentPuzzle { Null, Bayo, Samus, Palu, Daisy, Bowser, Pit }
+    public enum CurrentPuzzle { Null, Bayo, Samus, Palu, Mii, Bowser, Pit }
     public CurrentPuzzle currentPuzzle = CurrentPuzzle.Null;
 
 
@@ -31,7 +32,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     CurrentPuzzleFunc currentPuzzleFunc;
     [Header("Prefabs")]
     public GameObject prefabBayo;
-    public GameObject prefabSamus, prefabPalu, prefabBowser, prefabDaisy, prefabPit;
+    public GameObject prefabSamus, prefabPalu, prefabBowser, prefabMii, prefabPit;
     [HideInInspector]
     public GameObject prefabCurrent;
     [HideInInspector]
@@ -66,11 +67,30 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     [Header("Palu Components")]
     #region PuzzlePalu Vars
     public GameObject paluUI;
-    Transform paluSphere;
+    public Button paluButton;
+    public Vector3 paluRotVel;
+    public float paluTolerance;
+    public float paluMissCoolDown;
+    float paluMissCont = 0;
+    public bool paluCanWin;
+    Rigidbody paluSphere;
     #endregion
-
-    public GameObject daisyUI;
-
+    [Header("Mii Components")]
+    #region PuzzleMii Vars
+    public GameObject miiUI;
+    public Material miiNormal, miiSelected;
+    public bool miiForceFail = false;
+    MiiButton[] miiMeshes;
+    public int miiCorrect;
+    int miiCorrectToWin;
+    #endregion
+    [Header("Bowser Components")]
+    #region PuzzleBowser Vars
+    public GameObject bowserUI;
+    public TextMeshProUGUI bowserText;
+    int bowserCurrentChoice = 0;
+    string[] bowserCorrectChoice;
+    #endregion
     [Header("Win")]
     public GameObject objWin;
 
@@ -216,25 +236,69 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
     {
         if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
 
-        if (paluSphere.rotation.eulerAngles.y != 0)
+        if(!paluButton.interactable)
         {
-            Quaternion rotate = paluSphere.rotation;
-            rotate.y += Quaternion.Euler(0, 0.05f, 0).y;
-            paluSphere.rotation = rotate;
+            paluMissCont += Time.deltaTime;
+            if(paluMissCont >= paluMissCoolDown)
+            {
+                paluMissCont = 0;
+                paluButton.interactable = true;
+            }
         }
+        Quaternion deltaRotation = Quaternion.Euler(paluRotVel);
+        paluSphere.MoveRotation(paluSphere.rotation * deltaRotation);
 
-        if(paluSphere.rotation.eulerAngles.y >= 355f)
-        {
-            objWin.SetActive(true);
-        }
+        paluCanWin = (paluSphere.rotation.eulerAngles.y <= paluTolerance || paluSphere.rotation.eulerAngles.y >= 360 - paluTolerance);
     }
 
     public void PaluButton()
     {
         if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
-        Quaternion rotate = paluSphere.rotation;
-        rotate.y -= Quaternion.Euler(0, 25f, 0).y;
-        paluSphere.rotation = rotate;
+        if(paluCanWin)
+        {
+            objWin.SetActive(true);
+        }
+        else
+        {
+            paluButton.interactable = false;
+        }
+    }
+    #endregion
+
+    #region Puzzle Mii Funcitions
+    void PuzzleMii()
+    {
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
+        if (miiCorrect == miiCorrectToWin && !miiForceFail)
+        {
+            objWin.SetActive(true);
+        }
+    }
+
+    public void MiiButtonReset()
+    {
+        if (objWin.activeInHierarchy) return;
+        foreach (MiiButton mii in miiMeshes)
+        {
+            mii.ButtonReset();
+            miiCorrect = 0;
+            miiForceFail = false;
+        }
+    }
+    #endregion
+
+    #region Puzzle Bowser Functions
+    void PuzzleBowser()
+    {
+        if (objWin.activeInHierarchy || m_NewStatus == TrackableBehaviour.Status.NO_POSE) return;
+        bowserText.text = "Correcto: " + (bowserCurrentChoice) + "/5";
+        if (bowserCurrentChoice == 5) objWin.SetActive(true);
+    }
+
+    public void BowserButton(string text)
+    {
+        if (text == bowserCorrectChoice[bowserCurrentChoice]) bowserCurrentChoice++;
+        else bowserCurrentChoice = 0;
     }
     #endregion
 
@@ -256,7 +320,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
             {
                 if (rayHit.transform.gameObject == puzzleBayo)
                 {
-                    if (currentPuzzle == CurrentPuzzle.Bayo) return;
+                    if (currentPuzzle == CurrentPuzzle.Bayo && !objWin.activeInHierarchy) return;
                     HidePuzzles();
                     print("Bayo");
                     currentUI = bayoUI;
@@ -271,9 +335,11 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
                     return;
                 }
 
+                
+
                 if (rayHit.transform.gameObject == puzzleSamus)
                 {
-                    if (currentPuzzle == CurrentPuzzle.Samus) return;
+                    if (currentPuzzle == CurrentPuzzle.Samus && !objWin.activeInHierarchy) return;
                     HidePuzzles();
                     print("Samus");
                     currentUI = samusUI;
@@ -285,26 +351,38 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
                     return;
                 }
 
-                if (rayHit.transform.gameObject == puzzleDaisy)
+                if (rayHit.transform.gameObject == puzzleMii)
                 {
+                    if (currentPuzzle == CurrentPuzzle.Mii && !objWin.activeInHierarchy) return;
                     HidePuzzles();
-                    print("Daisy");
-                    currentUI = daisyUI;
+                    print("Mii");
+                    currentUI = miiUI;
                     currentUI.SetActive(true);
-                    prefabCurrent = Instantiate(prefabDaisy, puzzleDaisy.transform);
-
-                    currentPuzzle = CurrentPuzzle.Daisy;
+                    miiForceFail = false;
+                    miiCorrect = 0;
+                    prefabCurrent = Instantiate(prefabMii, puzzleMii.transform);
+                    miiMeshes = prefabCurrent.transform.GetChild(0).GetComponentsInChildren<MiiButton>();
+                    miiCorrectToWin = 0;
+                    foreach(MiiButton mii in miiMeshes)
+                    {
+                        if (mii.isCorrect) miiCorrectToWin++;
+                    }
+                    currentPuzzleFunc = PuzzleMii;
+                    currentPuzzle = CurrentPuzzle.Mii;
 
                     return;
                 }
 
                 if (rayHit.transform.gameObject == puzzlePalu)
                 {
-                    if (currentPuzzle == CurrentPuzzle.Palu) return;
+                    if (currentPuzzle == CurrentPuzzle.Palu && !objWin.activeInHierarchy) return;
                     HidePuzzles();
                     print("Palu");
                     prefabCurrent = Instantiate(prefabPalu, puzzlePalu.transform);
-                    paluSphere = prefabCurrent.transform.GetChild(0);
+                    paluSphere = prefabCurrent.transform.GetChild(0).GetComponent<Rigidbody>();
+                    currentUI = paluUI;
+                    currentUI.SetActive(true);
+                    paluCanWin = false;
                     currentPuzzleFunc = PuzzlePalu;
                     currentPuzzle = CurrentPuzzle.Palu;
                     return;
@@ -312,7 +390,7 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 
                 if (rayHit.transform.gameObject == puzzlePit)
                 {
-                    if (currentPuzzle == CurrentPuzzle.Pit) return;
+                    if (currentPuzzle == CurrentPuzzle.Pit && !objWin.activeInHierarchy) return;
                     HidePuzzles();
                     print("Pit");
                     currentUI = pitUI;
@@ -326,9 +404,19 @@ public class GM_ARScene : MonoBehaviour, ITrackableEventHandler
 
                 if (rayHit.transform.gameObject == puzzleBowser)
                 {
+                    if (currentPuzzle == CurrentPuzzle.Bowser && !objWin.activeInHierarchy) return;
                     HidePuzzles();
                     print("Bowser");
-                    Instantiate(prefabBowser, puzzleBowser.transform);
+                    currentUI = bowserUI;
+                    currentUI.SetActive(true);
+                    prefabCurrent = Instantiate(prefabBowser, puzzleBowser.transform);
+                    bowserCurrentChoice = 0;
+                    bowserCorrectChoice = new string[5];
+                    for(int i = 0; i < 5; i++)
+                    {
+                        bowserCorrectChoice[i] = prefabCurrent.transform.GetChild(i).name;
+                    }
+                    currentPuzzleFunc = PuzzleBowser;
                     currentPuzzle = CurrentPuzzle.Bowser;
                     return;
                 }

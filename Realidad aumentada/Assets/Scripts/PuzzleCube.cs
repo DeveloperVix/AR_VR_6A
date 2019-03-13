@@ -24,8 +24,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
     Rigidbody rb;
     GameObject botonesRot;
     GameObject videoFinal;
-    GameObject mensajePuzzleComplete;
-    GameObject mensajePuzzleComplete2;
+    GameObject intro;
+    GameObject mensajePuzzle;
+    GameObject mensajePuzzle2;
+    GameObject mensajePuzzle3;
+    GameObject mensajePuzzle4;
+    GameObject mensajePuzzle5;
+    GameObject mensajePuzzle6;
     float rotD = 0f;//rotacion de derecha a izquierda
     float rotI = 0f;//rotacion de izquierda a derecha
     float rotA = 0f;//rotacion de arriba hacia abajo
@@ -58,15 +63,27 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
         videoFinal.SetActive(false);
 
         botonesRot = GameObject.Find("BotonesRot");//botones que rotaran el cubo
-        mensajePuzzleComplete = GameObject.Find("PuzzleCompletado1");
         mTrackableBehaviour = cubeTarjet;
-        mensajePuzzleComplete2 = GameObject.Find("PuzzleCompletado2");
+
+        intro = GameObject.Find("Intro");
+        mensajePuzzle = GameObject.Find("PuzzleCompletado1");
+        mensajePuzzle2 = GameObject.Find("PuzzleCompletado2");
+        mensajePuzzle3 = GameObject.Find("PuzzleCompletado3");
+        mensajePuzzle4 = GameObject.Find("PuzzleCompletado4");
+        mensajePuzzle5 = GameObject.Find("PuzzleCompletado5");
+        mensajePuzzle6 = GameObject.Find("PuzzleCompletado6");
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
 
         botonesRot.SetActive(false);
-        mensajePuzzleComplete.SetActive(false);
-        mensajePuzzleComplete2.SetActive(false);
+
+        intro.SetActive(true);
+        mensajePuzzle.SetActive(false);
+        mensajePuzzle2.SetActive(false);
+        mensajePuzzle3.SetActive(false);
+        mensajePuzzle4.SetActive(false);
+        mensajePuzzle5.SetActive(false);
+        mensajePuzzle6.SetActive(false);
 
         thisCamera = GetComponent<Camera>();
 
@@ -82,6 +99,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
         {
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Capsula")))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
             {
+                intro.SetActive(false);
+                mensajePuzzle.SetActive(true);
+                mensajePuzzle2.SetActive(false);
+                mensajePuzzle3.SetActive(false);
+                mensajePuzzle4.SetActive(false);
+                mensajePuzzle5.SetActive(false);
+                mensajePuzzle6.SetActive(false);
                 if (capsula.transform.position.y > 0.22 && capsula.transform.position.y < 0.30)
                 {
                     Debug.LogWarning("puzzle1");
@@ -102,6 +126,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
 
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Cubo")))//bugg puzzle2
             {
+                intro.SetActive(false);
+                botonesRot.SetActive(false);
+                mensajePuzzle2.SetActive(true);
+                mensajePuzzle3.SetActive(false);
+                mensajePuzzle4.SetActive(false);
+                mensajePuzzle5.SetActive(false);
+                mensajePuzzle6.SetActive(false);
                 stPuzzle = estadoPuzzle.Zorro;
                 GameObject cubo = GameObject.Find("CubeScale");
                 MeshRenderer mesh = cubo.GetComponent<MeshRenderer>();
@@ -126,6 +157,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
 
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Esfera")))
             {
+                intro.SetActive(false);
+                botonesRot.SetActive(false);
+                mensajePuzzle2.SetActive(false);
+                mensajePuzzle3.SetActive(true);
+                mensajePuzzle4.SetActive(false);
+                mensajePuzzle5.SetActive(false);
+                mensajePuzzle6.SetActive(false);
                 stPuzzle = estadoPuzzle.Caracol;
                 rb.useGravity = true;
                 EsferaCol component = rayHit.collider.GetComponent<EsferaCol>();
@@ -140,6 +178,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
 
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("CuboRotate")))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
             {
+                intro.SetActive(false);
+                botonesRot.SetActive(false);
+                mensajePuzzle2.SetActive(false);
+                mensajePuzzle3.SetActive(false);
+                mensajePuzzle4.SetActive(true);
+                mensajePuzzle5.SetActive(false);
+                mensajePuzzle6.SetActive(false);
                 //mensajePuzzleComplete.SetActive(false);
                 Debug.LogError("rotarrr");
                 stPuzzle = estadoPuzzle.Afro;
@@ -160,6 +205,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
             
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("Cilindro")))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
             {
+                intro.SetActive(false);
+                botonesRot.SetActive(false);
+                mensajePuzzle2.SetActive(false);
+                mensajePuzzle3.SetActive(false);
+                mensajePuzzle4.SetActive(false);
+                mensajePuzzle5.SetActive(true);
+                mensajePuzzle6.SetActive(false);
                 stPuzzle = estadoPuzzle.Control;
                 CambioColor cilindro = rayHit.collider.GetComponent<CambioColor>();
                 if (!cilindro.isSelected)//si no es verdadero
@@ -202,6 +254,13 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
 
             if (Physics.Raycast(thisCamera.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, LayerMask.GetMask("EsferaExplosion")))//guardar el resultado del rayo en "rayhit", si colisiono con algo nos retorna verdadero
             {
+                intro.SetActive(false);
+                botonesRot.SetActive(false);
+                mensajePuzzle2.SetActive(false);
+                mensajePuzzle3.SetActive(false);
+                mensajePuzzle4.SetActive(false);
+                mensajePuzzle5.SetActive(false);
+                mensajePuzzle6.SetActive(true);
                 stPuzzle = estadoPuzzle.Perro;
                 GameObject cubo = GameObject.Find("SphereExplosion");
                 Vector3 escala = cubo.transform.localScale;
@@ -248,7 +307,7 @@ public class PuzzleCube : MonoBehaviour, ITrackableEventHandler
                 //    meshRend.material.color = Color.cyan;
                 //}
             }
-            if (stPuzzle == estadoPuzzle.Control)//bugg puzzle5
+            if (stPuzzle == estadoPuzzle.Control)
             {
                 botonesRot.SetActive(false);
                 //mensajePuzzleComplete2.SetActive(false);

@@ -26,8 +26,10 @@ public class SoundComp : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                
+                  
             }
+
+
         }
 
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)

@@ -30,12 +30,12 @@ TagManager:
   - RedCubeSelectedLayer
   - GreenCubeSelectedLayer
   - YellowCubeSelectedLayer
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Puzzle1Layer
+  - Puzzle2Layer
+  - Puzzle3Layer
+  - Puzzle4Layer
+  - Puzzle5Layer
+  - Puzzle6Layer
   - 
   - 
   - 

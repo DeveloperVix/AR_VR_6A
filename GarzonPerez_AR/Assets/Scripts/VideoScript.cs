@@ -10,13 +10,13 @@ public class VideoScript : MonoBehaviour
     public VideoPlayer VideoPlayer;
     bool OnPlays = false;
 
-
+    [Header("Animaciones de Puzzles")]
     public Animator anim;
     public Animator animButton;
     public Animator CilindroAnim;
     public Animator Rodi;
 
-
+    [Header("Objetos de Puzzles")]
     public GameObject cilindro;
     public GameObject win;
     public GameObject Pelota, pelota2;
@@ -25,6 +25,7 @@ public class VideoScript : MonoBehaviour
     public GameObject es2;
     public GameObject Rodillo;
 
+    [Header("Valores de Puzzles")]
     public float range = 10f;
     public int VidaCilindro1= 12;
 
@@ -78,17 +79,22 @@ public class VideoScript : MonoBehaviour
             {
                 if (es == true)
                 {
-                    es.SetActive(false);
+                    Destroy(es);
                     es1.SetActive(true);
+                    if (es1 == true && es == null)
+                    {
+                        Destroy(es1);
+                        es2.SetActive(true);
+                        if (es2 == true && es == null && es1 == null)
+                        {
+                            Destroy(es2);
+                        }
+
+                    }
                 }
-                if (es1 == true)
+                
+                if(es == null && es1 == null && es2 == null)
                 {
-                    es1.SetActive(false);
-                    es2.SetActive(true);
-                }
-                if (es2 == true)
-                {
-                    es2.SetActive(false);
                     StartCoroutine("Puzzle4");
                 }
             }

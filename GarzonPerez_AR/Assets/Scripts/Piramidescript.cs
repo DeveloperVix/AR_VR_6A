@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Piramidescript : MonoBehaviour
 {
-    VideoScript vid;
 
+    [Header("Objetos de Puzzles")]
     public GameObject Base;
     public GameObject Media;
     public GameObject ButtonBase;
     public GameObject ButtonMedia;
     public GameObject winn;
-
+    
     float y, z;
     float y1, z1;
-    float y2, z2;
-
 
     void Start()
     {

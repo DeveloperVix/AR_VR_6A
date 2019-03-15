@@ -6,9 +6,11 @@ using Vuforia;
 public class TestScript : SecuenseController
 {
 
+    
+
     void Start()
     {
-
+        ChangeRender();
     }
 
     void Update()
@@ -30,4 +32,6 @@ public class TestScript : SecuenseController
             }
         }
     }
+
+    
 }

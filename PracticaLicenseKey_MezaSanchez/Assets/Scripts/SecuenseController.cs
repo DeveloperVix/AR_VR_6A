@@ -18,9 +18,11 @@ public class SecuenseController : MonoBehaviour
     private bool flag = false;
     private bool onTrackStay = false;
 
+    [Header("Material de animacion boton")]
+    public GameObject button;
+
     void Start()
     {
-
     }
 
     void Update()
@@ -67,5 +69,18 @@ public class SecuenseController : MonoBehaviour
             i.gameObject.SetActive(false);
             i.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
+    }
+
+    public void ChangeRender()
+    {
+        StartCoroutine(change());
+    }
+
+    IEnumerator change()
+    {
+       button.SetActive(false);
+       yield return new WaitForSeconds(2f);
+       button.SetActive(true);
+       StartCoroutine(change());  
     }
 }

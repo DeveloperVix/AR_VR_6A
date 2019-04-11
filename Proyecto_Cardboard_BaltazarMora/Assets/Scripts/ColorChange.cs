@@ -8,6 +8,7 @@ public class ColorChange : MonoBehaviour
     MeshRenderer mesh;
 
 
+
     void Start()
     {
         mesh = GetComponent<MeshRenderer>();
@@ -15,11 +16,13 @@ public class ColorChange : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void MatChange(Material mat)
     {
         mesh.material = mat;
     }
+
+
 }

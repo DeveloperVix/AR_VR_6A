@@ -6,6 +6,9 @@ public class INSERTARMATERIAL : MonoBehaviour
 {
     public Material materialdefecto, selected;
     private MeshRenderer taco;
+    public float rotateSpeed = 50f;
+    bool rotateStatus = false;
+    //public GameObject objectRotate;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,10 @@ public class INSERTARMATERIAL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (rotateStatus == true)
+        {
+            gameObject.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+        }
     }
     public void Changecolor()
     {
@@ -24,5 +30,18 @@ public class INSERTARMATERIAL : MonoBehaviour
     public void ReturnColor()
     {
         taco.material = selected;
+    }
+    public void Rotar()
+    {
+        
+            rotateStatus = true;
+        
+        
+    }
+    public void norotar()
+    {
+        
+            rotateStatus = false;
+        
     }
 }

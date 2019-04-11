@@ -6,12 +6,13 @@ public class Selected : MonoBehaviour
 {
 
     public Material matNormal, matSelect;
-    Renderer renderer;
+    [HideInInspector]
+    public Renderer render;
 
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        render = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -20,8 +21,8 @@ public class Selected : MonoBehaviour
         
     }
 
-    public void HoverChange(bool val)
+    public virtual void HoverChange(bool val)
     {
-        renderer.material = val ? matSelect : matNormal;
+        render.material = val ? matSelect : matNormal;
     }
 }

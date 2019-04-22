@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotation : Selected
 {
+
     bool detected = false;
 
     void Update()

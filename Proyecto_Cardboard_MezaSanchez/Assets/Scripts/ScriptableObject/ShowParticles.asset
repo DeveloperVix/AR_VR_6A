@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e0e9b77b27742479fc1230d5223ca5, type: 3}
+  m_Name: ShowParticles
+  m_EditorClassIdentifier: 
+  actionName: SpawnBubble
+  bubbble: {fileID: 8409392807344125594, guid: a7672c1547230e443b8ae3a647492e99, type: 3}
+  thisObj: {fileID: 7665890890323385609, guid: 1eb38233500049e408a4d514c2dbfc52, type: 3}

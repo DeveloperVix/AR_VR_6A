@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb77e7d6bade8458acacad034fd203, type: 3}
+  m_Name: control1
+  m_EditorClassIdentifier: 
+  estado: 0000000000
+  mMatelia:
+  - {fileID: 2100000, guid: 50095b6f1c79ba14b832b007e71f3bd6, type: 2}
+  - {fileID: 2100000, guid: c1ff5d20b69997e48afdd60705761f4c, type: 2}
+  rota: 0
+  vely: 50
+  texto: {fileID: 2391904988220790979, guid: 048b8a2a0c0b589488321014232648f9, type: 3}
+  particulas: {fileID: 606795313036150303, guid: ba85244e292a1cb4dbbb5111c6d50c0c,
+    type: 3}
+  sonido: {fileID: 9112837178694738880, guid: 024200eb147c772428b27b1abe0b8c75, type: 3}

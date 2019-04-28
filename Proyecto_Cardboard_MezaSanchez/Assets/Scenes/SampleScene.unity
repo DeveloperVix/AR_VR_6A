@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 394308064}
   - component: {fileID: 394308063}
   - component: {fileID: 394308067}
-  - component: {fileID: 7665890890323385608}
+  - component: {fileID: 394308068}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -354,7 +354,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7665890890323385608}
+        - m_Target: {fileID: 394308068}
           m_MethodName: ExecuteActions
           m_Mode: 1
           m_Arguments:
@@ -371,7 +371,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7665890890323385608}
+        - m_Target: {fileID: 394308068}
           m_MethodName: StopActions
           m_Mode: 1
           m_Arguments:
@@ -385,6 +385,32 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &394308068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394308062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a3dec7a60a835429d54ce7aea1abc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateRot: 1
+  RotateObjectScritpable: {fileID: 11400000, guid: 3be73df386d737440a0a4b598172e05a,
+    type: 2}
+  activateAudio: 0
+  PlayAudioScriptable: {fileID: 11400000, guid: 3d65afe7eb463c244b0b2a694b4f4fd5,
+    type: 2}
+  activateParticles: 0
+  ShowParticlesScriptable: {fileID: 11400000, guid: c638df8829d132845b2567e7a7e94437,
+    type: 2}
+  activateText: 0
+  ShowTextScriptable: {fileID: 11400000, guid: de949039ca006d849ae17fb908be2165, type: 2}
+  activateColor: 0
+  ChangeColorScriptable: {fileID: 11400000, guid: 5d318034854f92c48b09ccaade81f72c,
+    type: 2}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,17 +748,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463285ecd6702471a909ba810832bf0e, type: 3}
---- !u!114 &7665890890323385608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394308062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c7ff8249d77cf4793e72b5ce739082, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: 3d65afe7eb463c244b0b2a694b4f4fd5, type: 2}

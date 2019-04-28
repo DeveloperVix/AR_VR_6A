@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: PlayAudio
   m_EditorClassIdentifier: 
   actionName: PlayAudio
+  audioTest: {fileID: 1746962301985448666, guid: 30b08a0a5333ee043a80d6c0da74d323,
+    type: 3}
+  flag: {fileID: 2884793395277811816, guid: 2a743f4fd0112e140aa78cf4b33fa1ed, type: 3}
   clip: {fileID: 4195628987150036722, guid: 30b08a0a5333ee043a80d6c0da74d323, type: 3}

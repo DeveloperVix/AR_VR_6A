@@ -7,7 +7,8 @@ using UnityEngine.Audio;
 
 public class PlayAudio : Interactive
 {
-
+    public GameObject audioTest;
+    public GameObject flag;
     public AudioSource clip;
 
 

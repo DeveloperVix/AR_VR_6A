@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShowParticles
   m_EditorClassIdentifier: 
   actionName: SpawnBubble
-  bubbble: {fileID: 8409392807344125594, guid: a7672c1547230e443b8ae3a647492e99, type: 3}
+  bubbble: {fileID: 4247543361670904696, guid: 329f4302555880140b22bc92c2ce6ac3, type: 3}
   thisObj: {fileID: 7665890890323385609, guid: 1eb38233500049e408a4d514c2dbfc52, type: 3}

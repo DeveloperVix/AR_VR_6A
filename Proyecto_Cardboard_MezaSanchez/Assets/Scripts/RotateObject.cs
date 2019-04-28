@@ -9,6 +9,7 @@ public class RotateObject : Interactive
 {
     public bool flag = false;
     public GameObject thisObj;
+    public Vector3 rotMovement;
 
     public override void ExecuteAction()
     { 
@@ -16,7 +17,7 @@ public class RotateObject : Interactive
         {
             Debug.Log("hi " + thisObj.transform.rotation);
             //mono.GetComponent<MonoBehaviour>().
-            thisObj.transform.Rotate(new Vector3(0, 0, 10));
+            thisObj.transform.Rotate(rotMovement);
         }
     }
 

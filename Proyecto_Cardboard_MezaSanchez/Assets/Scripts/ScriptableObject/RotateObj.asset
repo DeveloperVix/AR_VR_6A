@@ -15,3 +15,4 @@ MonoBehaviour:
   actionName: RotarObjeto
   flag: 1
   thisObj: {fileID: 7665890890323385609, guid: 1eb38233500049e408a4d514c2dbfc52, type: 3}
+  rotMovement: {x: 0, y: 0, z: 10}

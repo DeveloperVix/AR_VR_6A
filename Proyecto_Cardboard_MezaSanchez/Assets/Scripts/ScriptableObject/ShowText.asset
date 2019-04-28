@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940f96969fe446a4e87b091ad661a4c7, type: 3}
   m_Name: ShowText
   m_EditorClassIdentifier: 
-  actionName: 
-  text: {fileID: 0}
+  actionName: "Ense\xF1arTexto"
+  text: {fileID: 2965535776757536708, guid: 8edaacdc91e710e4c9826f8d58543cc0, type: 3}

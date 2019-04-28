@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class cambio_material : MonoBehaviour
 {
-    
+
     public Material cubo_material;
     public GameObject cubo2;
     bool rota = false;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        rota = false;
+      //  rota = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (rota == true)
+    }
+
+     /*   if (rota == true)
         {
             cubo2.transform.Rotate(1, 1, 1 * 2);
         }
@@ -45,5 +46,5 @@ public class cambio_material : MonoBehaviour
     public void detener_cubo()
     {
         rota = false;
-    }
+    }*/
 }

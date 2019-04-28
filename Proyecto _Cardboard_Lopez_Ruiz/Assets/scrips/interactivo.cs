@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class interactivo : ScriptableObject
 {
-    public enum tipodeinteraccion {rotar,audio,imagen}
+    public enum tipodeinteraccion {rotar,audio,imagen,color,particulas}
     public tipodeinteraccion interaccionactual;
 
     public abstract void ejecutarinteraccion(GameObject obj);

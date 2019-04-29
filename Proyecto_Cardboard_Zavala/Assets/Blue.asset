@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9943ad4afd5c05746bba217ca008b424, type: 3}
   m_Name: Blue
   m_EditorClassIdentifier: 
+  rotating: 0
   text: El Cuarto de los Cuatro
-  material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
-  Matrial2: {fileID: 2100000, guid: 51283c519d0524048beaf2c279893ba4, type: 2}
+  Material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
+  Material2: {fileID: 2100000, guid: 28d0c747d9542b04ea0fee99539afb7a, type: 2}
   particles: {fileID: 8143376036335653866, guid: c3d57b332d2f24348b450132fa5b1d7b,
     type: 3}
-  rotationX: 0
-  rotationY: 0
-  gameObject: {fileID: 1753302714997690770, guid: 637fe13c0d456cc448a76c26cf9557fb,
-    type: 3}
+  rotationX: 4

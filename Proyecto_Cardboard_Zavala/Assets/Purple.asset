@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9943ad4afd5c05746bba217ca008b424, type: 3}
   m_Name: Purple
   m_EditorClassIdentifier: 
+  rotating: 0
   text: El Segundo de los Cuatro
-  material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
-  Matrial2: {fileID: 2100000, guid: 28d0c747d9542b04ea0fee99539afb7a, type: 2}
+  Material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
+  Material2: {fileID: 2100000, guid: 5ce3d5e45592d3d43bd8ab30bf9f5bed, type: 2}
   particles: {fileID: 8143376036335653866, guid: 4baf7b8bed9c29347ba07d6dec451826,
     type: 3}
-  rotationX: 0
-  rotationY: 0
-  gameObject: {fileID: 1753302714997690770, guid: 637fe13c0d456cc448a76c26cf9557fb,
-    type: 3}
+  rotationX: 1

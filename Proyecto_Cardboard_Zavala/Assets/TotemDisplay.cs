@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class TotemDisplay : MonoBehaviour
 {
-    public Material Material1, Material2;
-    private MeshRenderer MeshRender;
+    /*Material Material1, Material2;*/
 
-    public CubeScript Totem;
     public bool rotating = false;
-    float speed = 500;
+    public CubeScript totem;
+    private MeshRenderer MeshRender;
+    public Material Material1, Material2;
+    float speed = 250;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Totem.text);
+        
+        Debug.Log(totem.text);
         MeshRender = GetComponent<MeshRenderer>();
+        /*totem.looking();
+        totem.nolooking();
+        totem.ChangeMaterial();
+        totem.DefaultMaterial();*/
+        
     }
 
     void Update()

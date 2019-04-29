@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9943ad4afd5c05746bba217ca008b424, type: 3}
   m_Name: Green
   m_EditorClassIdentifier: 
+  rotating: 0
   text: El Primero de los Cuatro
-  material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
-  Matrial2: {fileID: 2100000, guid: 02dcfd6fb133a284dbacebd743328699, type: 2}
+  Material1: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
+  Material2: {fileID: 2100000, guid: 02dcfd6fb133a284dbacebd743328699, type: 2}
   particles: {fileID: 4992815514415687316, guid: c9299be10526f374c853742b70cb3cbf,
     type: 3}
-  rotationX: 0
-  rotationY: 0
-  gameObject: {fileID: 1753302714997690770, guid: 637fe13c0d456cc448a76c26cf9557fb,
-    type: 3}
+  rotationX: 3

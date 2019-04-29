@@ -767,34 +767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1940006846}
-          m_MethodName: looking
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1940006846}
-          m_MethodName: ChangeMaterial
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -812,6 +784,34 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1940006846}
           m_MethodName: DefaultMaterial
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1940006846}
+          m_MethodName: looking
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1940006846}
+          m_MethodName: ChangeMaterial
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -990,6 +990,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Totem
       objectReference: {fileID: 0}
+    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
+        type: 3}
+      propertyPath: Totem
+      value: 
+      objectReference: {fileID: 11400000, guid: fe13c542d4bd27945b46efd98dfafe10,
+        type: 2}
+    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
+        type: 3}
+      propertyPath: Material1
+      value: 
+      objectReference: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
+    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
+        type: 3}
+      propertyPath: Material2
+      value: 
+      objectReference: {fileID: 2100000, guid: 28d0c747d9542b04ea0fee99539afb7a, type: 2}
+    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
+        type: 3}
+      propertyPath: totem
+      value: 
+      objectReference: {fileID: 11400000, guid: fe13c542d4bd27945b46efd98dfafe10,
+        type: 2}
+    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
+        type: 3}
+      propertyPath: rotating
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1753302714997690861, guid: 637fe13c0d456cc448a76c26cf9557fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1095,21 +1122,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
-        type: 3}
-      propertyPath: Totem
-      value: 
-      objectReference: {fileID: 11400000, guid: fe13c542d4bd27945b46efd98dfafe10,
-        type: 2}
-    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
-        type: 3}
-      propertyPath: Material1
-      value: 
-      objectReference: {fileID: 2100000, guid: fc33c77e71df56c40a187b8039f31230, type: 2}
-    - target: {fileID: 1753302714997690769, guid: 637fe13c0d456cc448a76c26cf9557fb,
-        type: 3}
-      propertyPath: Material2
-      value: 
-      objectReference: {fileID: 2100000, guid: 02dcfd6fb133a284dbacebd743328699, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637fe13c0d456cc448a76c26cf9557fb, type: 3}

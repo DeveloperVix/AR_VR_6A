@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactive : MonoBehaviour
+public abstract class Interactive : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public enum TipoInteractivo { RotarObjeto, ReproduceAudio, CambiarColor, Particulas, MostrarTexto };
+
+    public TipoInteractivo interaccion;
+
+    public abstract void Ejecutar(GameObject obj);
+
+    public abstract void DejaDeEjecutar(GameObject obj);
 }

@@ -7,11 +7,13 @@ using UnityEngine;
 public class MetColor : MetPadreInter    //Hereda de la clase Interactivo, la cual es scriptable object
 {
     Renderer Ren;
-    Material Cambio, Normal;
+    public Material Cambio, Normal;
+
 
     public override void ExecuteInteraction(GameObject objToInteract)
     {
-        Ren.material = Cambio;
+        Ren = objToInteract.GetComponent<MeshRenderer>();
+        objToInteract.GetComponent<MeshRenderer>().material = Cambio;
     }
     public override void StopExecutionInteraction()
     {

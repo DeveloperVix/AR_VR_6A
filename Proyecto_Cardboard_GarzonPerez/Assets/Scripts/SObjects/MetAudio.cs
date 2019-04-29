@@ -14,6 +14,6 @@ public class MetAudio : MetPadreInter    //Hereda de la clase Interactivo, la cu
     }
     public override void StopExecutionInteraction()
     {
-        AudioEscena = null;
+        AudioEscena.GetComponent<AudioSource>().Stop();
     }
 }

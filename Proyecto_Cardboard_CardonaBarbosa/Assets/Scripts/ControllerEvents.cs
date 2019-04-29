@@ -8,7 +8,9 @@ public class ControllerEvents : MonoBehaviour
     public Renderer cubo;
     public Material materialNormal;
     public Transform CuboRotate;
+    public Transform CuboScale;
     public bool onStay = false;
+    public bool onStayScale = false;
 
 
 
@@ -17,6 +19,7 @@ public class ControllerEvents : MonoBehaviour
     void Start()
     {
         cubo = GetComponent<Renderer>();
+        
     }
 
     // Update is called once per frame
@@ -25,7 +28,15 @@ public class ControllerEvents : MonoBehaviour
         if (onStay)
         {
             CuboRotate.Rotate(100* Time.deltaTime, 0, 0);
-        }  
+        }
+        if (onStayScale)
+        {
+            Vector3 scaleCube = CuboScale.transform.localScale;
+            scaleCube.x += 0.002f;
+            scaleCube.y += 0.002f;
+            scaleCube.z += 0.002f;
+            CuboScale.transform.localScale = scaleCube;
+        }
     }
     public void onChangeMaterial()
     {
@@ -45,6 +56,14 @@ public class ControllerEvents : MonoBehaviour
     {
         onStay = false;
         Debug.Log("Salii");
+    }
+    public void ScaleCubo()
+    {
+        onStayScale = true;
+    }
+    public void ScaleCuboExit()
+    {
+        onStayScale = false;
     }
    
 }

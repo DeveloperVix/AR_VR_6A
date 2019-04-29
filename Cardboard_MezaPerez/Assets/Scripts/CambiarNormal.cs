@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cambiar : MonoBehaviour
+public class CambiarNormal : MonoBehaviour
 {
 
     public Material C1, C2;
@@ -12,11 +12,11 @@ public class Cambiar : MonoBehaviour
         OBJ = GetComponent<MeshRenderer>();
     }
 
-    public void pointEnter()
+    public void PointEnter()
     {
         OBJ.material = C2;
     }
-    public void pointExit()
+    public void PointExit()
     {
         OBJ.material = C1;
     }

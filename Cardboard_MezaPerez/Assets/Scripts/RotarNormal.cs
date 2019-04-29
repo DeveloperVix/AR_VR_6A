@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotCubo : MonoBehaviour
+public class RotarNormal : MonoBehaviour
 {
     public Transform OBJ;
     bool rotarsi;
@@ -30,11 +30,11 @@ public class RotCubo : MonoBehaviour
 
 
 
-    public void pointEnter()
+    public void PointEnter()
     {
         rotarsi = true;
     }
-    public void pointExit()
+    public void PointExit()
     {
         rotarsi = false;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rotar : MonoBehaviour
 {
 
-    
+     
 
     public bool OnTarget = false;
     // Start is called before the first frame update

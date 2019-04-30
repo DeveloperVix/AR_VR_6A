@@ -1143,12 +1143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf892543ea8d3543853f962907867b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactivos: []
+  interactivos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   objInteraccion:
+  - {fileID: 1271278752}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 119152, guid: 867b88b984d2ae94f8d22be7de77e03d, type: 3}
   - {fileID: 0}
 --- !u!65 &1271278754
 BoxCollider:

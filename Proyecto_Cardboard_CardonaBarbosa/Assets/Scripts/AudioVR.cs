@@ -8,31 +8,31 @@ public class AudioVR : Scriptables
     public AudioVR()
     {
         type = Type.Audio;
-        audioSource = null;
+        audio = null;
     }
 
     public AudioClip clip;
-    private AudioSource audioSource = null;
+    private AudioSource audio = null;
 
     public override void OnNotSeen(GameObject obj)
     {
-        CheckAudioSource(obj);
-        if (audioSource.isPlaying) audioSource.Stop();
+        ReviewAudio(obj);
+        if (audio.isPlaying) audio.Stop();
     }
 
     public override void OnSeen(GameObject obj)
     {
-        CheckAudioSource(obj);
-        if (!audioSource.isPlaying) audioSource.Play();
+        ReviewAudio(obj);
+        if (!audio.isPlaying) audio.Play();
     }
 
-    void CheckAudioSource(GameObject obj)
+    void ReviewAudio(GameObject obj)
     {
-        if (audioSource == null)
+        if (audio == null)
         {
-            audioSource = obj.AddComponent<AudioSource>();
-            audioSource.clip = clip;
-            audioSource.loop = true;
+            audio = obj.AddComponent<AudioSource>();
+            audio.clip = clip;
+            audio.loop = true;
         }
     }
 }

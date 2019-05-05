@@ -13,15 +13,15 @@ public class RotateVR : Scriptables
     public enum RotateWhen { NotSeen, Seen }
     public RotateWhen rotateWhen;
 
-    public float speed = 20;
+    public float vel = 20;
 
     public override void OnSeen(GameObject obj)
     {
-        if (rotateWhen == RotateWhen.Seen) obj.transform.Rotate(0, speed * Time.deltaTime, 0);
+        if (rotateWhen == RotateWhen.Seen) obj.transform.Rotate(0, vel * Time.deltaTime, 0);
     }
 
     public override void OnNotSeen(GameObject obj)
     {
-        if (rotateWhen == RotateWhen.NotSeen) obj.transform.Rotate(0, speed * Time.deltaTime, 0);
+        if (rotateWhen == RotateWhen.NotSeen) obj.transform.Rotate(0, vel * Time.deltaTime, 0);
     }
 }

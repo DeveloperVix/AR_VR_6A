@@ -15,17 +15,18 @@ public class ParticlesVR : Scriptables
 
     public override void OnNotSeen(GameObject obj)
     {
-        CheckParticleSystem(obj);
+        ReviewParticlesSystem(obj);
         if (particles.isPlaying) particles.Stop();
+        
     }
 
     public override void OnSeen(GameObject obj)
     {
-        CheckParticleSystem(obj);
+        ReviewParticlesSystem(obj);
         if (!particles.isPlaying) particles.Play();
     }
 
-    void CheckParticleSystem(GameObject obj)
+    void ReviewParticlesSystem(GameObject obj)
     {
         if (particles == null) particles = Instantiate(prefabParticles, obj.transform).GetComponent<ParticleSystem>();
     }

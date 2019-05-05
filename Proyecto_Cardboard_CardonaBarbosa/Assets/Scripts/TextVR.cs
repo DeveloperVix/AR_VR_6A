@@ -12,26 +12,26 @@ public class TextVR : Scriptables
 
     public GameObject prefabText;
     public string message;
-    private TextMesh textMesh;
+    private TextMesh texto;
 
     public override void OnNotSeen(GameObject obj)
     {
-        CheckTextMesh(obj);
-        textMesh.gameObject.SetActive(false);
+        ReviewText(obj);
+        texto.gameObject.SetActive(false);
     }
 
     public override void OnSeen(GameObject obj)
     {
-        CheckTextMesh(obj);
-        textMesh.gameObject.SetActive(true);
+        ReviewText(obj);
+        texto.gameObject.SetActive(true);
     }
 
-    void CheckTextMesh(GameObject obj)
+    void ReviewText(GameObject obj)
     {
-        if (textMesh == null)
+        if (texto == null)
         {
-            textMesh = Instantiate(prefabText, obj.transform).GetComponent<TextMesh>();
-            textMesh.text = message;
+            texto = Instantiate(prefabText, obj.transform).GetComponent<TextMesh>();
+            texto.text = message;
         }
     }
 }

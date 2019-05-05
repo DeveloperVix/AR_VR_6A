@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: color
   m_EditorClassIdentifier: 
   currentInteraction: 3
+  Cambio: {fileID: 2100000, guid: b073a85cc05c8544cbe4d2d06bb87069, type: 2}
+  Normal: {fileID: 2100000, guid: 196ade4e4e0cac84fa048372b27203d7, type: 2}

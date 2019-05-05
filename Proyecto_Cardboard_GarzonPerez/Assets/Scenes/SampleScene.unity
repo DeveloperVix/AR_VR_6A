@@ -758,12 +758,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   maxRaycastHits: 64
---- !u!1 &766727078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 155710, guid: 4f43b3ac4f7a749c183901d95761fece,
-    type: 3}
-  m_PrefabInstance: {fileID: 378270900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &810118130
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,9 +911,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions:
-  - {fileID: 11400000, guid: 83dd52cbdcc617444a2b8ddc4a5d945f, type: 2}
+  - {fileID: 11400000, guid: cfa6d064b849e494f9b3793f0bc6f031, type: 2}
   objInteraction:
-  - {fileID: 766727078}
+  - {fileID: 810118130}
 --- !u!1001 &1077195938
 PrefabInstance:
   m_ObjectHideFlags: 0
